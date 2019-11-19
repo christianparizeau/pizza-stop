@@ -25,7 +25,7 @@ export default class ProductDetails extends React.Component {
     if (!this.state.product) return null;
     const { name, price, image, shortDescription, longDescription } = this.state.product;
     return (
-      <div className='conatiner'>
+      <div className='container'>
         <p className="text-muted" onClick={this.getCatalog}>{'< '}Back to catalog </p>
         <div className="row">
           <img src={image} className="fixed-image-height" />
@@ -36,6 +36,7 @@ export default class ProductDetails extends React.Component {
           </div>
         </div>
         <p>{longDescription}</p>
+        <a href="#" className="btn btn-primary">Add to Cart</a>
       </div>
     );
   }
