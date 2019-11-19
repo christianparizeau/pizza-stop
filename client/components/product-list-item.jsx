@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default function ProductListItem({ product }) {
-  const price = '$' + product.price / 100;
+  const price = '$' + (product.price / 100).toFixed(2);
   return (
-    <div className="card mb-3 ml-3" style={{ width: '18rem' }}>
+    <div className="card mb-3 ml-3" style={{ width: '20rem' }}>
       <img src={product.image} className="card-img-top fixed-image-height"></img>
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
