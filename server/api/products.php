@@ -1,11 +1,5 @@
 <?php
 
-
-if($request['query']['productId']){
-
-}
-
-
 if ($request['method'] === 'GET') {
   $link = get_db_link();
   $productId = $request['query']['productId'];
