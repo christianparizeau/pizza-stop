@@ -25,6 +25,9 @@ if ($request['method'] === 'GET') {
       array_push($message, $row);
     }
   }
+  if(empty($message)){
+    throw new ApiError("No product with productId of {$productId} exists", 404);
+  }
   $response['body'] = $message;
 }
 
