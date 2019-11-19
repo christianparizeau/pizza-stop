@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Header({ name, logo }) {
+export default function Header({ name }) {
   return (
-    <div>
-      <h1>{name}</h1> <p>{logo}</p>
+    <div className='text-center'>
+      <h1><i className="fas fa-snowboarding fa-fw fa-spin"></i> {name} <i className="fas fa-snowboarding fa-fw fa-spin"></i></h1>
     </div>
   );
 }

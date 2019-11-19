@@ -19,7 +19,7 @@ if ($request['method'] === 'GET') {
       array_push($message, $row);
     }
   }
-  if(count($message === 1)){
+  if(count($message)==1){
     $message = $message[0];
   }
   if(empty($message)){
