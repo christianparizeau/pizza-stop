@@ -6,10 +6,15 @@ export default class ProductDetails extends React.Component {
     this.state = {
       product: null
     };
+    this.getCatalog = this.getCatalog.bind(this);
+  }
+
+  getCatalog() {
+    this.props.viewSetter('catalog', {});
   }
 
   componentDidMount() {
-    fetch(`/api/products/?productID=${this.props.productId}`)
+    fetch(`/api/products?productId=${this.props.productId.productId}`)
       .then(res => res.json())
       .then(product => {
         this.setState({ product });
@@ -20,8 +25,8 @@ export default class ProductDetails extends React.Component {
     if (!this.state.product) return null;
     const { name, price, image, shortDescription, longDescription } = this.state.product;
     return (
-      <div>
-        <p className="text-muted">{'< '}Back to catalog </p>
+      <div className='conatiner'>
+        <p className="text-muted" onClick={this.getCatalog}>{'< '}Back to catalog </p>
         <div className="row">
           <img src={image} className="fixed-image-height" />
           <div>
