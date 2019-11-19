@@ -27,7 +27,9 @@ export default class ProductList extends React.Component {
       return <ProductListItem product={element} key={element.productId} />;
     });
     return (
-      elements
+      <div className="d-flex flex-wrap container">
+        {elements}
+      </div>
     );
   }
 }
