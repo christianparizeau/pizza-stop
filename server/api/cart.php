@@ -35,7 +35,7 @@ if ($request['method'] === 'POST') {
     $cartItemDataSQL = "SELECT products.name, products.productId,
                                products.price, products.image,
                                products.shortDescription,
-                               cartItems.cartItemId
+                               cartItems.cartItemId as id
                         FROM products JOIN cartItems
                         ON products.productId=cartItems.productId
                         WHERE cartItems.cartId={$cartId}";
