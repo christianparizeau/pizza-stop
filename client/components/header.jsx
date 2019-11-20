@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Header({ name }) {
   return (
-    <div className='text-center'>
+    <div className='text-center mt-4'>
       <h1><i className="fas fa-snowboarding fa-fw fa-spin"></i> {name} <i className="fas fa-snowboarding fa-fw fa-spin"></i></h1>
     </div>
   );
