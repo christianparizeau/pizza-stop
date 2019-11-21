@@ -2,19 +2,38 @@
   object-fit: contain;
   height:250px;
 }
-
-.header{
+.header,.footer{
   background-color: rgb(33,31,31);
   color: whitesmoke;
   height: 10vh;
   display:flex;
   position: sticky;
   z-index: 1;
-  top:0;
   justify-content: center;
   align-items: center;
+}
+.header{
+  top:0;
+}
+.footer{
+  position:fixed;
+  justify-content: space-between;
+  width:100vw;
+  bottom:0;
+}
+.cart-item{
+  border: 1px solid darkgray
+}
+
+.cart-item:hover{
+  border: 1px solid black
 }
 
 .header-size{
   font-size: 1.5rem;
+  display:inline-block;
+}
+
+.pointer:hover{
+  cursor: pointer;
 }

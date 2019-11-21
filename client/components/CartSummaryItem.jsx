@@ -3,8 +3,8 @@ import React from 'react';
 export default function CartSummartyItem({ item }) {
   const price = '$' + (item.price / 100).toFixed(2);
   return (
-    <div className="d-flex">
-      <img className="fixed-image-height" src={item.image} />
+    <div className="d-flex cart-item mt-2">
+      <img className='fixed-image-height' src={item.image} />
       <div>
         <h1>{item.name}</h1>
         <p className="text-muted">{price}</p>
