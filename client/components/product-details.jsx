@@ -32,7 +32,7 @@ export default class ProductDetails extends React.Component {
     const displayPrice = '$' + (price / 100).toFixed(2);
     return (
       <div className='container'>
-        <p className="text-muted" onClick={this.getCatalog}>{'< '}Back to catalog </p>
+        <p className="text-muted pointer" onClick={this.getCatalog}>{'< '}Back to catalog </p>
         <div className="row">
           <img src={image} className="fixed-image-height" />
           <div>
