@@ -29,6 +29,9 @@
   border: 1px solid black
 }
 
+.spacer{
+  height: 10vh;
+}
 .header-size{
   font-size: 1.5rem;
   display:inline-block;
