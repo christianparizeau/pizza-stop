@@ -8,12 +8,22 @@ export default class App extends React.Component {
     super(props);
     this.name = 'Wicked Sales';
     this.state = {
+      cart: [],
       view: {
         name: 'catalog',
         params: {}
       }
     };
     this.setView = this.setView.bind(this);
+  }
+
+  getCartItems() {
+    fetch('/api/cart')
+      .then(res => res.json())
+      .then(cart => {
+        this.setState({ cart });
+      })
+      .catch(err => console.error(err));
   }
 
   setView(name, params) {
