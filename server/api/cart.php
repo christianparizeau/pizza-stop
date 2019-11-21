@@ -4,9 +4,18 @@ if ($request['method'] === 'GET') {
   if (!isset($_SESSION['cart_id'])) {
     $response['body'] = [];
   } else {
-    $reponse['body'] = [
-      'message' => 'You have a cart'
-    ];
+    $link = get_db_link();
+    $cartId = $_SESSION['cart_id'];
+    $cartItemDataSQL = "SELECT products.name, products.productId,
+                               products.price, products.image,
+                               products.shortDescription,
+                               cartItems.cartItemId as id
+                        FROM products JOIN cartItems
+                        ON products.productId=cartItems.productId
+                        WHERE cartItems.cartId={$cartId}";
+    $result = mysqli_query($link, $cartItemDataSQL);
+    $message = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $response['body'] = $message;
   }
   send($response);
 }
@@ -24,10 +33,14 @@ if ($request['method'] === 'POST') {
     }
     $productPrice = mysqli_fetch_assoc($productPrice);
     $productPrice = $productPrice['price'];
-    $cartInsert = "INSERT INTO `carts` (createdAt)
+    if (!isset($_SESSION['cart_id'])) {
+      $cartInsert = "INSERT INTO `carts` (createdAt)
                    VALUES(CURRENT_TIMESTAMP)";
-    mysqli_query($link, $cartInsert);
-    $cartId = mysqli_insert_id($link);
+      mysqli_query($link, $cartInsert);
+      $cartId = mysqli_insert_id($link);
+    } else {
+      $cartId = $_SESSION['cart_id'];
+    }
     $cartItemInsert = "INSERT INTO `cartItems` (cartId,productId,price)
                        VALUES ($cartId,$productId,$productPrice)";
     mysqli_query($link, $cartItemInsert);
@@ -38,7 +51,7 @@ if ($request['method'] === 'POST') {
                                cartItems.cartItemId as id
                         FROM products JOIN cartItems
                         ON products.productId=cartItems.productId
-                        WHERE cartItems.cartId={$cartId}";
+                        WHERE cartItems.cartItemId={$cartItemId}";
     $results = mysqli_query($link, $cartItemDataSQL);
     $data = mysqli_fetch_assoc($results);
     $response['body'] = $data;
