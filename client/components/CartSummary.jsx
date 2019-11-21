@@ -18,6 +18,7 @@ export default function CartSummary(props) {
     <div>
       <div className="container">
         {cartItemElements}
+        <div className='spacer mt-2'></div>
       </div>
       <div className="footer d-flex align-middle">
         <p className='text-muted pointer' onClick={viewSet}>{'<'} back to Catalog</p>
