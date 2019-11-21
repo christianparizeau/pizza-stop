@@ -7,10 +7,15 @@ export default class ProductDetails extends React.Component {
       product: null
     };
     this.getCatalog = this.getCatalog.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   getCatalog() {
     this.props.viewSetter('catalog', {});
+  }
+
+  addToCart() {
+    this.props.addToCart(this.state.product);
   }
 
   componentDidMount() {
@@ -37,7 +42,7 @@ export default class ProductDetails extends React.Component {
           </div>
         </div>
         <p>{longDescription}</p>
-        <a href="#" className="btn btn-primary">Add to Cart</a>
+        <a href="#" onClick={this.addToCart} className="btn btn-primary">Add to Cart</a>
       </div>
     );
   }
