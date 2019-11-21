@@ -56,20 +56,20 @@ export default class App extends React.Component {
 
   render() {
     const viewState = this.state.view.name;
+    let page = '';
     if (viewState === 'catalog') {
-      return (
-        <div>
-          <Header name={this.name} cartItemCount={this.state.cart.length} />
-          <ProductList viewSetter={this.setView} />
-        </div>
-      );
+      page = <ProductList viewSetter={this.setView} />;
     } else if (viewState === 'details') {
-      return (
-        <div>
-          <Header name={this.name} cartItemCount={this.state.cart.length} />
-          <ProductDetails productId={this.state.view.params} viewSetter={this.setView} addToCart={this.addToCart} />
-        </div>
-      );
+      page = <ProductDetails
+        productId={this.state.view.params}
+        viewSetter={this.setView}
+        addToCart={this.addToCart} />;
     }
+    return (
+      <div>
+        <Header name={this.name} cartItemCount={this.state.cart.length} />
+        {page}
+      </div>
+    );
   }
 }
