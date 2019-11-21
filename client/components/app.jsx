@@ -30,7 +30,7 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(cartItem => {
         const cart = Array.from(this.state.cart);
-        cart.concat(cartItem);
+        cart.push(cartItem);
         this.setState({ cart });
       });
 
