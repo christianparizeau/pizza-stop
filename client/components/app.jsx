@@ -31,6 +31,10 @@ export default class App extends React.Component {
     this.setState({ view });
   }
 
+  componentDidMount() {
+    this.getCartItems();
+  }
+
   render() {
     const viewState = this.state.view.name;
     if (viewState === 'catalog') {
@@ -43,7 +47,7 @@ export default class App extends React.Component {
     } else if (viewState === 'details') {
       return (
         <div>
-          <Header name={this.name} />
+          <Header name={this.name} cartItemCount={this.state.cart.length} />
           <ProductDetails productId={this.state.view.params} viewSetter={this.setView} />
         </div>
       );
