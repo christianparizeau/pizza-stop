@@ -3,6 +3,7 @@ import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './CartSummary';
+import CheckoutForm from './CheckoutForm';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,15 +21,13 @@ export default class App extends React.Component {
     this.placeOrder = this.placeOrder.bind(this);
   }
 
-  placeOrder({ name, creditCard, shippingAddress }) {
+  placeOrder(checkoutInfo) {
     const reqs = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: {
-        name, creditCard, shippingAddress
-      }
+      body: JSON.stringify(checkoutInfo)
     };
     fetch('/api/orders', reqs)
       .then(res => res.json())
@@ -86,6 +85,8 @@ export default class App extends React.Component {
         addToCart={this.addToCart} />;
     } else if (viewState === 'cart') {
       page = <CartSummary cartItems={this.state.cart} setView={this.setView} />;
+    } else if (viewState === 'checkout') {
+      page = <CheckoutForm checkout={this.placeOrder} cartItems={this.state.cart} setView={this.setView} />;
     }
     return (
       <div>

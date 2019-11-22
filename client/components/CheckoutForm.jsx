@@ -8,8 +8,10 @@ export default class CheckoutForm extends React.Component {
       creditCard: '',
       shippingAddress: ''
     };
-    this.price = this.props.price;
+    this.price = this.findTotalPrice(this.props.cartItems);
     this.fieldChange = this.fieldChange.bind(this);
+    this.goToCatalog = this.goToCatalog.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
   }
 
   fieldChange(e) {
@@ -18,15 +20,25 @@ export default class CheckoutForm extends React.Component {
     this.setState(newState);
   }
 
+  findTotalPrice(cartItems) {
+    const reducer = (acc, cartItem) => { return acc + cartItem.price; };
+    const totalPrice = cartItems.reduce(reducer, 0);
+    return ('$' + (totalPrice / 100).toFixed(2));
+  }
+
+  goToCatalog() {
+    this.props.setView('catalog', {});
+  }
+
   handleCheckout() {
-    this.props.checkout();
+    this.props.checkout(this.state);
   }
 
   render() {
     return (
       <div className="container">
         <h1>My Cart</h1>
-        <h3 className='text-muted'>{this.price}</h3>
+        <h4 className='text-muted'>{this.price}</h4>
         <div className="input-group mb-2">
           <label>Name</label>
           <input className='form-control'
@@ -46,13 +58,13 @@ export default class CheckoutForm extends React.Component {
         <div className="input-group mb-2">
           <label>Shipping Address</label>
           <input className='form-control'
-            type="textarea"
+            type="textArea"
             name='shippingAddress'
             onChange={this.fieldChange}
-            value={this.state.name} />
+            value={this.state.shippingAddress} />
         </div>
         <div className="d-flex justify-space-between">
-          <p onClick className="text-muted">{'<'}Continue Shopping</p>
+          <p onClick={this.goToCatalog} className="text-muted pointer">{'<'}Continue Shopping</p>
           <button className="btn btn-primary" onClick={this.handleCheckout}>Place Order</button>
         </div>
       </div>
