@@ -5,9 +5,14 @@ export default function CartSummary(props) {
     return <div>You have no items in your cart <i className="far fa-frown"></i></div>;
   }
 
-  const viewSet = () => {
+  const catalog = () => {
     props.setView('catalog', {});
   };
+
+  const checkout = () => {
+    props.setView('checkout', {});
+  };
+
   const reducer = (acc, cartItem) => { return acc + cartItem.price; };
   let totalPrice = props.cartItems.reduce(reducer, 0);
   totalPrice = '$' + (totalPrice / 100).toFixed(2);
@@ -21,9 +26,9 @@ export default function CartSummary(props) {
         <div className='spacer mt-2'></div>
       </div>
       <div className="footer d-flex align-middle">
-        <p className='text-muted pointer' onClick={viewSet}>{'<'} back to Catalog</p>
+        <p className='text-muted pointer' onClick={catalog}>{'<'} back to Catalog</p>
         <h1 className='header-size'>Cart Total: {totalPrice}</h1>
-        <button className='btn btn-info mr-4'>Checkout</button>
+        <button className='btn btn-info mr-4' onClick={checkout}>Checkout</button>
       </div>
     </div>
   );
