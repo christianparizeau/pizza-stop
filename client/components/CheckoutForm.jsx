@@ -37,37 +37,43 @@ export default class CheckoutForm extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>My Cart</h1>
-        <h4 className='text-muted'>{this.price}</h4>
-        <div className="input-group mb-2">
-          <label>Name</label>
-          <input className='form-control'
-            type="text"
-            name='name'
-            onChange={this.fieldChange}
-            value={this.state.name} />
+        <h1 className="mt-4 mb-2">My Cart</h1>
+        <h4 className='text-muted mb-4'>{this.price}</h4>
+        <div className="input-group mb-3">
+          <form className="col-12">
+            <label htmlFor="name">Name</label>
+            <input className='form-control'
+              type="text"
+              name='name'
+              onChange={this.fieldChange}
+              value={this.state.name} />
+          </form>
         </div>
-        <div className="input-group mb-2">
-          <label>Credit Card Number</label>
-          <input className='form-control'
-            type="text"
-            name='creditCard'
-            onChange={this.fieldChange}
-            value={this.state.creditCard} />
+        <div className="input-group mb-3">
+          <form className="col-12">
+            <div>Credit Card Number</div>
+            <input className='form-control'
+              type="text"
+              name='creditCard'
+              onChange={this.fieldChange}
+              value={this.state.creditCard} />
+          </form>
         </div>
-        <div className="input-group mb-2">
-          <label>Shipping Address</label>
-          <input className='form-control'
-            type="textArea"
-            name='shippingAddress'
-            onChange={this.fieldChange}
-            value={this.state.shippingAddress} />
+        <div className="input-group mb-4">
+          <form className="col-12">
+            <label htmlFor="shippingAddress">Shipping Address</label>
+            <textarea className='form-control'
+              type="text"
+              name='shippingAddress'
+              onChange={this.fieldChange}
+              value={this.state.shippingAddress} />
+          </form>
         </div>
-        <div className="d-flex justify-space-between">
+        <div className="d-flex justify-content-between">
           <p onClick={this.goToCatalog} className="text-muted pointer">{'<'}Continue Shopping</p>
           <button className="btn btn-primary" onClick={this.handleCheckout}>Place Order</button>
         </div>
-      </div>
+      </div >
     );
   }
 }
