@@ -39,39 +39,42 @@ export default class CheckoutForm extends React.Component {
       <div className="container">
         <h1 className="mt-4 mb-2">My Cart</h1>
         <h4 className='text-muted mb-4'>{this.price}</h4>
-        <div className="input-group mb-3">
-          <form className="col-12">
+        <form id="checkout" onSubmit={this.handleCheckout}>
+          <div className="input-group mb-3">
+
             <label htmlFor="name">Name</label>
-            <input className='form-control'
-              type="text"
-              name='name'
-              onChange={this.fieldChange}
-              value={this.state.name} />
-          </form>
-        </div>
-        <div className="input-group mb-3">
-          <form className="col-12">
-            <div>Credit Card Number</div>
-            <input className='form-control'
-              type="text"
-              name='creditCard'
-              onChange={this.fieldChange}
-              value={this.state.creditCard} />
-          </form>
-        </div>
-        <div className="input-group mb-4">
-          <form className="col-12">
+            <div className="col-12">
+              <input className='form-control'
+                type="text"
+                name='name'
+                onChange={this.fieldChange}
+                value={this.state.name} />
+            </div>
+          </div>
+          <div className="input-group mb-3">
+            <label htmlFor="creditCard">Credit Card</label>
+            <div className="col-12">
+              <input className='form-control'
+                type="text"
+                name='creditCard'
+                onChange={this.fieldChange}
+                value={this.state.creditCard} />
+            </div>
+          </div>
+          <div className="input-group mb-4">
             <label htmlFor="shippingAddress">Shipping Address</label>
-            <textarea className='form-control'
-              type="text"
-              name='shippingAddress'
-              onChange={this.fieldChange}
-              value={this.state.shippingAddress} />
-          </form>
-        </div>
+            <div className="col-12">
+              <textarea className='form-control'
+                type="text"
+                name='shippingAddress'
+                onChange={this.fieldChange}
+                value={this.state.shippingAddress} />
+            </div>
+          </div>
+        </form>
         <div className="d-flex justify-content-between">
           <p onClick={this.goToCatalog} className="text-muted pointer">{'<'}Continue Shopping</p>
-          <button className="btn btn-primary" onClick={this.handleCheckout}>Place Order</button>
+          <button type="submit" form="checkout" className="btn btn-primary">Place Order</button>
         </div>
       </div >
     );
