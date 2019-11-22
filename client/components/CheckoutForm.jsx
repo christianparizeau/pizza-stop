@@ -36,7 +36,7 @@ export default class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container background">
         <h1 className="mt-4 mb-2">My Cart</h1>
         <h4 className='text-muted mb-4'>{this.price}</h4>
         <form id="checkout" onSubmit={this.handleCheckout}>

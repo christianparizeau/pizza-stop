@@ -21,7 +21,7 @@ export default function CartSummary(props) {
   });
   return (
     <div>
-      <div className="container">
+      <div className="container background">
         {cartItemElements}
         <div className='spacer mt-2'></div>
       </div>

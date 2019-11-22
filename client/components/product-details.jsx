@@ -31,7 +31,7 @@ export default class ProductDetails extends React.Component {
     const { name, price, image, shortDescription, longDescription } = this.state.product;
     const displayPrice = '$' + (price / 100).toFixed(2);
     return (
-      <div className='container'>
+      <div className="container background">
         <p className="text-muted pointer" onClick={this.getCatalog}>{'< '}Back to catalog </p>
         <div className="row">
           <img src={image} className="fixed-image-height" />
