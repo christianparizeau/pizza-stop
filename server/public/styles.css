@@ -1,0 +1,51 @@
+.fixed-image-height{
+  object-fit: contain;
+  height:250px;
+}
+.header,.footer{
+  background-color: rgb(33,31,31);
+  color: whitesmoke;
+  height: 10vh;
+  display:flex;
+  position: sticky;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+.header{
+  top:0;
+}
+.footer{
+  position:fixed;
+  justify-content: space-between;
+  width:100vw;
+  bottom:0;
+}
+.cart-item{
+  border: 1px solid darkgray
+}
+
+.cart-item:hover{
+  border: 1px solid black
+}
+
+.spacer{
+  height: 10vh;
+}
+.header-size{
+  font-size: 1.5rem;
+  display:inline-block;
+}
+
+#root, .background{
+  background-image: url('./images/email-pattern.png');
+  background-repeat: repeat;
+}
+
+.background{
+  height: 100vh;
+}
+
+.pointer:hover{
+  cursor: pointer;
+}
