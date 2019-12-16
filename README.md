@@ -1,23 +1,57 @@
-# wicked_sales
+# Wicked Sales
 
-A full stack LAMP & React shopping cart app.
+A full stack LAMP & React shopping cart app
 
-## Introduction
+## Technologies Used
 
-For this project, you will be building a single-page React application and a dynamic PHP API.
+-React.js
+-Webpack 4
+-Bootstrap 4
+-PHP
+-MySQL
+-CSS3
+-HTML5
+-AWS EC2
 
-## Getting Started
+## Live Demo
 
-1. Fork this repository to your GitHub account and clone the fork to your local `lfz` directory.
-2. Check out a `dev` branch and push it to `origin`.
-    ```
-    git push origin dev
-    ```
-3. Install all dependencies in `package.json` with NPM.
-    ```
+
+Try the application live at PLACEHOLDER
+
+## Preview
+
+PLACEHOLDER
+
+## Development
+
+#### System Requirements
+
+-Node
+-NPM
+-MySQL
+
+1. Clone the repository
+
+    ```shell
+        git clone https://github.com/christianparizeau/wicked-sales
+        cd wicked-sales
+        ```
+
+1. Install all dependencies with NPM.
+
+    ```shell
     npm install
     ```
+    
+1. Import the example database to MySQL
 
-## Instructions
+    ```shell
+    DO THINGY
+    ```
+1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
 
-There are instructions and Issue Template snippets located in the `features` directory of [the instructions for this project](https://github.com/Learning-Fuze/wicked-sales-instructions).
+    ```shell
+    npm run dev
+    ```
+
+    
