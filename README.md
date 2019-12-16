@@ -4,14 +4,14 @@ A full stack LAMP & React shopping cart app
 
 ## Technologies Used
 
--React.js
--Webpack 4
--Bootstrap 4
--PHP
--MySQL
--CSS3
--HTML5
--AWS EC2
+- React.js
+- Webpack 4
+- Bootstrap 4
+- PHP
+- MySQL
+- CSS3
+- HTML5
+- AWS EC2
 
 ## Live Demo
 
@@ -26,16 +26,16 @@ PLACEHOLDER
 
 #### System Requirements
 
--Node
--NPM
--MySQL
+- Node
+- NPM
+- MySQL
 
 1. Clone the repository
 
     ```shell
-        git clone https://github.com/christianparizeau/wicked-sales
-        cd wicked-sales
-        ```
+    git clone https://github.com/christianparizeau/wicked-sales
+    cd wicked-sales
+    ```
 
 1. Install all dependencies with NPM.
 
