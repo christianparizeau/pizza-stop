@@ -20,7 +20,7 @@ Try the application live at PLACEHOLDER
 
 ## Preview
 
-PLACEHOLDER
+![wicked-sales-preview](https://user-images.githubusercontent.com/36774670/70953080-1cf24000-201d-11ea-89a8-a0132e914b2a.gif)
 
 ## Development
 
