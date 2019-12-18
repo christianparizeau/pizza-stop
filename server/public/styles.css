@@ -46,3 +46,15 @@
 .pointer:hover{
   cursor: pointer;
 }
+
+@media (max-width:1024px){
+
+  .mobile-size{
+    font-size: 1.5rem !important
+  }
+
+  .fixed-image-height{
+    height: 125px
+  }
+
+}
