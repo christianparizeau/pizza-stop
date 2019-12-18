@@ -33,16 +33,18 @@ export default class ProductDetails extends React.Component {
     return (
       <div className="container background">
         <p className="text-muted pointer" onClick={this.getCatalog}>{'< '}Back to catalog </p>
-        <div className="row">
+        <div className="row mx-3">
           <img src={image} className="fixed-image-height" />
-          <div>
+          <div className=''>
             <h1>{name}</h1>
             <p className="text-muted">{displayPrice}</p>
-            <p>{shortDescription}</p>
+            <h5>{shortDescription}</h5>
           </div>
         </div>
-        <p>{longDescription}</p>
-        <a href="#" onClick={this.addToCart} className="btn btn-primary">Add to Cart</a>
+        <div className="row mx-2">
+          <p>{longDescription}</p>
+          <a href="#" onClick={this.addToCart} className="btn mb-4 btn-primary">Add to Cart</a>
+        </div>
       </div>
     );
   }

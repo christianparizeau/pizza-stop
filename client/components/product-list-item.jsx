@@ -6,7 +6,7 @@ export default function ProductListItem({ product, setView }) {
   };
   const price = '$' + (product.price / 100).toFixed(2);
   return (
-    <div className="card mb-5"
+    <div className="card mb-4 pointer"
       onClick={viewSetter}
       style={{ width: '20rem' }}>
       <img src={product.image} className="card-img-top fixed-image-height"></img>
