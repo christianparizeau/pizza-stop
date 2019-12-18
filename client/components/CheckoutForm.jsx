@@ -47,6 +47,7 @@ export default class CheckoutForm extends React.Component {
               <input className='form-control'
                 type="text"
                 name='name'
+                required
                 onChange={this.fieldChange}
                 value={this.state.name} />
             </div>
@@ -55,8 +56,9 @@ export default class CheckoutForm extends React.Component {
             <label htmlFor="creditCard">Credit Card</label>
             <div className="col-12">
               <input className='form-control'
-                type="text"
+                type="number"
                 name='creditCard'
+                required
                 onChange={this.fieldChange}
                 value={this.state.creditCard} />
             </div>
@@ -67,6 +69,7 @@ export default class CheckoutForm extends React.Component {
               <textarea className='form-control'
                 type="text"
                 name='shippingAddress'
+                required
                 onChange={this.fieldChange}
                 value={this.state.shippingAddress} />
             </div>

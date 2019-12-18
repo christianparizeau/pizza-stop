@@ -37,13 +37,10 @@
   display:inline-block;
 }
 
-#root, .background{
+#root{
   background-image: url('./images/email-pattern.png');
   background-repeat: repeat;
-}
-
-.background{
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .pointer:hover{
