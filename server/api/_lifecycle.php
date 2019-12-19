@@ -17,7 +17,8 @@ $response = [
   ]
 ];
 
-function send(&$response) {
+function send(&$response)
+{
   http_response_code($response['status']);
   if (!array_key_exists('body', $response)) {
     unset($response['headers']['Content-Type']);
@@ -33,7 +34,8 @@ function send(&$response) {
   exit;
 }
 
-function get_db_link() {
+function get_db_link()
+{
   require '_config.php';
   $host = $db_params['host'];
   $user = $db_params['user'];
@@ -49,7 +51,9 @@ function get_db_link() {
   return $link;
 }
 
-class ApiError extends Error {}
+class ApiError extends Error
+{
+}
 
 set_exception_handler(function ($error) {
   if ($error instanceof ApiError) {
@@ -67,21 +71,6 @@ set_exception_handler(function ($error) {
     ],
     'body' => [
       'error' => $message
-    ]
-  ];
-  send($response);
-});
-
-register_shutdown_function(function () {
-  $error = error_get_last();
-  if (headers_sent() || $error === null) return;
-  $response = [
-    'status' => 500,
-    'headers' => [
-      'Content-Type' => 'application/json; charset=utf-8'
-    ],
-    'body' => [
-      'error' => 'An unexpected error occurred.'
     ]
   ];
   send($response);
