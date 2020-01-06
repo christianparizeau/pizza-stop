@@ -15,7 +15,7 @@ A full stack LAMP & React shopping cart app
 
 ## Live Demo
 
-https://pzo.codes.wicked-sales
+https://wicked-sales.pzo.codes
 
 ## Preview
 
