@@ -47,12 +47,47 @@ https://wicked-sales.pzo.codes
     ```shell
     npm install
     ```
+ 
+1. Create a database in MySQL
+    * phpmyadmin (*Recommended*)
+  
+    1. Log into  phpmyadmin
+    1. Create a new table (remember this name)
+    
+    * CLI
+    1. In your terminal type to login, where username is your MySQL username. Default is *root*
+    
+    ```shell
+    mysql -u username -p
+    ```
+    
+    1. Enter your password for MySQL. Default is *root*
+    1. Create a new Database, replace dbname with your choice name for the database
+    
+    ```shell
+    CREATE DATABASE dbname;
+    ```
     
 1. Import the example database to MySQL
 
     ```shell
     npm run db:import
     ```
+    
+1. Edit the PHP config file
+    1. Open your code editor of choice
+    1. navigate to the *server/api/_config.example.php file*
+    1. Rename it to *_config.php*
+    1. Edit the fields as follows
+ 
+     ```shell
+     'user' => 'username'
+     'pass' => 'password'
+     'host' => 'localhost'
+     'database' => dbname
+     ```
+     Where dbname is the name of the database you created earlier, username is your MySQL username, password is your MySQL password. Defaults are *root*
+    
 1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
 
     ```shell
