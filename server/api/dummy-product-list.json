@@ -1,44 +1,44 @@
 [
   {
     "id": 1,
-    "name": "Shake Weight",
-    "price": 2999,
-    "image": "/images/shake-weight.jpg",
-    "shortDescription": "Dynamic Inertia technology ignites muscles in arms, shoulders, and chest."
+    "name": "Pizza Wheel",
+    "price": 900,
+    "image": "/images/cutter.jpg",
+    "shortDescription": "Cut your pizza to size with this sharp and durable pizza wheel."
   },
   {
     "id": 2,
-    "name": "ShamWow",
-    "price": 2595,
-    "image": "/images/shamwow.jpg",
-    "shortDescription": "It's like a chamois, towel, and sponge, all in one! Soaks up to 10x it's weight in any liquid!"
+    "name": "Kneading Surface",
+    "price": 4400,
+    "image": "/images/kneading.jpg",
+    "shortDescription": "Knead and size your dough on this surface that is easy to clean and store."
   },
   {
     "id": 3,
-    "name": "Snuggie",
-    "price": 2900,
-    "image": "/images/snuggie.jpg",
-    "shortDescription": "Super-Soft Fleece with pockets! One Size fits all Adults! Keeps you Warm & Your Hands-Free!"
+    "name": "Ceramic Pizza Stone",
+    "price": 4900,
+    "image": "/images/stone.jpg",
+    "shortDescription": "Get that restaurant quality crust at home on the grill or in the oven! "
   },
   {
     "id": 4,
-    "name": "Wax Vac",
-    "price": 999,
-    "image": "/images/wax-vac.jpg",
-    "shortDescription": "Gentle way to remove ear wax. Safe and hygienic. Reduces the risk of painful infections."
+    "name": "Stainless Steel Cheese Grater",
+    "price": 1200,
+    "image": "/images/grater.jpg",
+    "shortDescription": "Shred, grate, or slice. This grater has what it takes to get the job done. "
   },
   {
     "id": 5,
-    "name": "Ostrich Pillow",
-    "price": 9900,
-    "image": "/images/ostrich-pillow.jpg",
-    "shortDescription": "Create your own snugly space in the world and feel-good anywhere with the ultimate cocoon pillow."
+    "name": "Indoor Herb Garden",
+    "price": 14700,
+    "image": "/images/herb-garden.jpg",
+    "shortDescription": "Impress with homegrown herbs that add the final touch to any dish!"
   },
   {
     "id": 6,
-    "name": "Tater Mitts",
-    "price": 830,
-    "image": "/images/tater-mitts.jpg",
-    "shortDescription": "8 Seconds is All You Need with Tater Mitts Quickly and easily prepare all your favorite potato dishes with Tater Mitts."
+    "name": "Digital Scale",
+    "price": 3500,
+    "image": "/images/scale.jpg",
+    "shortDescription": "Measure with confidence with this high quality digital scale."
   }
 ]

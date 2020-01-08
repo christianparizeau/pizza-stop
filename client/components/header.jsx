@@ -9,12 +9,27 @@ export default function Header({ name, cartItemCount, setView }) {
     setView('cart', {});
   };
 
+  let item = 'Items';
+  if (cartItemCount === 1) {
+    item = 'Item';
+  }
+
   return (
-    <div className='text-center header'>
-      <h2 className='mr-auto ml-3 mobile-size'> {name} <i className="fas fa-snowboarding fa-fw"></i></h2>
-      <div onClick={viewSet}
-        className="header-size mx-2 badge badge-secondary pointer">{cartItemCount}</div>
-      <i onClick={viewSet} className='fas fa-shopping-cart fa-fw fa-2x mr-1 pointer'></i>
+    <div className="text-center header">
+      <h2 className="mr-auto ml-5 mobile-size">
+        {' '}
+        {name} <i className="fas fa-pizza-slice fa-fw"></i>
+      </h2>
+      <div
+        onClick={viewSet}
+        className="header-size mx-2 badge badge-secondary pointer"
+      >
+        {cartItemCount} {item}
+      </div>
+      <i
+        onClick={viewSet}
+        className="fas fa-shopping-cart fa-fw fa-lg mr-5 pointer"
+      ></i>
     </div>
   );
 }
