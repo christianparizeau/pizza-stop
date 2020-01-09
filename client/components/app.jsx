@@ -8,7 +8,7 @@ import CheckoutForm from './CheckoutForm';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.name = 'Wicked Sales';
+    this.name = 'Pizza Stop';
     this.state = {
       cart: [],
       view: {
@@ -52,7 +52,6 @@ export default class App extends React.Component {
         cart.push(cartItem);
         this.setState({ cart });
       });
-
   }
 
   getCartItems() {
@@ -79,18 +78,31 @@ export default class App extends React.Component {
     if (viewState === 'catalog') {
       page = <ProductList viewSetter={this.setView} />;
     } else if (viewState === 'details') {
-      page = <ProductDetails
-        productId={this.state.view.params}
-        viewSetter={this.setView}
-        addToCart={this.addToCart} />;
+      page = (
+        <ProductDetails
+          productId={this.state.view.params}
+          viewSetter={this.setView}
+          addToCart={this.addToCart}
+        />
+      );
     } else if (viewState === 'cart') {
       page = <CartSummary cartItems={this.state.cart} setView={this.setView} />;
     } else if (viewState === 'checkout') {
-      page = <CheckoutForm checkout={this.placeOrder} cartItems={this.state.cart} setView={this.setView} />;
+      page = (
+        <CheckoutForm
+          checkout={this.placeOrder}
+          cartItems={this.state.cart}
+          setView={this.setView}
+        />
+      );
     }
     return (
       <div>
-        <Header name={this.name} cartItemCount={this.state.cart.length} setView={this.setView} />
+        <Header
+          name={this.name}
+          cartItemCount={this.state.cart.length}
+          setView={this.setView}
+        />
         {page}
       </div>
     );
