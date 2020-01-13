@@ -11,8 +11,8 @@ export default function CartSummartyItem({ item, remove }) {
           <h1>{item.name}</h1>
           <p className="text-muted">{price}</p>
         </div>
-        <button type="button" onClick={removeItem} className="btn btn-danger">Remove</button>
         <p className='col-md-12 col-lg-3 '>{item.shortDescription}</p>
+        <button type="button" onClick={removeItem} className="btn btn-danger btn-sm">Remove</button>
       </div>
     </div>
   );
