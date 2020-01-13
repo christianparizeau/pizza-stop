@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.27, for Linux (x86_64)
 --
 -- Host: localhost    Database: wickedSales
 -- ------------------------------------------------------
--- Server version	5.7.28-0ubuntu0.18.04.4
+-- Server version	5.7.27-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,8 +27,10 @@ CREATE TABLE `cartItems` (
   `cartId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
   `price` int(11) NOT NULL,
-  PRIMARY KEY (`cartItemId`)
-) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `quantity` smallint(6) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`cartItemId`),
+  UNIQUE KEY `cartId` (`cartId`,`productId`)
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +39,6 @@ CREATE TABLE `cartItems` (
 
 LOCK TABLES `cartItems` WRITE;
 /*!40000 ALTER TABLE `cartItems` DISABLE KEYS */;
-INSERT INTO `cartItems` VALUES (172,44,3,4900),(173,44,3,4900),(174,44,3,4900),(175,44,3,4900);
 /*!40000 ALTER TABLE `cartItems` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,7 +53,7 @@ CREATE TABLE `carts` (
   `cartId` int(11) NOT NULL AUTO_INCREMENT,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cartId`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +62,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (44,'2020-01-08 23:07:13');
+INSERT INTO `carts` VALUES (44,'2020-01-08 23:07:13'),(45,'2020-01-13 18:06:06');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,4 +130,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-08 15:47:32
+-- Dump completed on 2020-01-13 20:40:09

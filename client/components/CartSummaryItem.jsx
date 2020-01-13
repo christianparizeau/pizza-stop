@@ -1,4 +1,5 @@
 import React from 'react';
+import QuantityBar from './QuantityBar';
 
 export default function CartSummartyItem({ item, remove }) {
   const price = '$' + (item.price / 100).toFixed(2);
@@ -12,7 +13,12 @@ export default function CartSummartyItem({ item, remove }) {
           <p className="text-muted">{price}</p>
         </div>
         <p className='col-md-12 col-lg-3 '>{item.shortDescription}</p>
-        <button type="button" onClick={removeItem} className="btn btn-danger btn-sm">Remove</button>
+        <button type="button"
+          onClick={removeItem}
+          className="btn btn-danger btn-sm">
+          Remove
+        </button>
+        <QuantityBar />
       </div>
     </div>
   );
