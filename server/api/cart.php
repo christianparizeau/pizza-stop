@@ -20,6 +20,21 @@ if ($request['method'] === 'GET') {
   send($response);
 }
 
+if ($request['method'] === 'DELETE') {
+  $link = get_db_link();
+  $id = $request['body']['id'];
+  $cartItemDeleteSQL =
+    "DELETE FROM cartItems
+     WHERE cartItems.cartItemId={$id}";
+  $result = mysqli_query($link, $cartItemDeleteSQL);
+  if ($result) {
+    $response['body'] = $id;
+  } else {
+    $response['body']['error'] = TRUE;
+  }
+  send($response);
+}
+
 if ($request['method'] === 'POST') {
   $productId = $request['body']['productId'];
   if (!isset($productId) || !is_numeric($productId) || intval($productId) === 0) {
