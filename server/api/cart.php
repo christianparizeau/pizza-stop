@@ -56,10 +56,9 @@ if ($request['method'] === 'POST') {
     } else {
       $cartId = $_SESSION['cart_id'];
     }
-    $alteration = $request['body']['alteration'];
     $cartItemInsert = "INSERT INTO `cartItems` (cartId,productId,price)
                        VALUES ($cartId,$productId,$productPrice)
-                       ON DUPLICATE KEY UPDATE quantity=quantity+$alteration";
+                       ON DUPLICATE KEY UPDATE quantity=quantity+1";
     mysqli_query($link, $cartItemInsert);
     $cartItemId = mysqli_insert_id($link);
     $cartItemDataSQL = "SELECT products.name, products.productId,
