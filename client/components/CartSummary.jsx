@@ -7,7 +7,7 @@ export default function CartSummary(props) {
   const checkout = () => {
     props.setView('checkout', {});
   };
-  const reducer = (acc, cartItem) => { return acc + cartItem.price; };
+  const reducer = (acc, cartItem) => { return acc + cartItem.price * cartItem.quantity; };
   let totalPrice = props.cartItems.reduce(reducer, 0);
   totalPrice = '$' + (totalPrice / 100).toFixed(2);
   if (!props.cartItems.length) {

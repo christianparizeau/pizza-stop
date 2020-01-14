@@ -118,11 +118,13 @@ export default class App extends React.Component {
         />
       );
     }
+    const reducer = (acc, cartItem) => { return acc + cartItem.quantity; };
+    const cartItemCount = this.state.cart.reduce(reducer, 0);
     return (
       <div>
         <Header
           name={this.name}
-          cartItemCount={this.state.cart.length}
+          cartItemCount={cartItemCount}
           setView={this.setView}
         />
         {page}
