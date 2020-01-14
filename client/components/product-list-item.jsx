@@ -17,5 +17,4 @@ export default function ProductListItem({ product, setView }) {
       </div>
     </div>
   );
-
 }
