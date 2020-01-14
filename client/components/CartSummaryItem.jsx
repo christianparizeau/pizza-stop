@@ -19,7 +19,7 @@ export default function CartSummartyItem({ item, remove }) {
           Remove
         </button>
       </div>
-      <QuantityBar quantity={4} />
+      <QuantityBar quantity={item.quantity} />
     </div>
   );
 

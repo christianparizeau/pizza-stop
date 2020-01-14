@@ -67,7 +67,7 @@ export default class App extends React.Component {
     fetch('/api/cart', reqs)
       .then(res => res.json())
       .then(cartItem => {
-        const cart = Array.from(this.state.cart);
+        const cart = Array.from(this.state.cart).filter(element => element.productId !== cartItem.productId);
         cart.push(cartItem);
         this.setState({ cart });
       });
