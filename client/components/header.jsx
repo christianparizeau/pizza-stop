@@ -16,7 +16,7 @@ export default function Header({ name, cartItemCount, setView }) {
 
   return (
     <div className="text-center header">
-      <h2 className="mr-auto ml-5 mobile-size">
+      <h2 className="mr-auto ml-1 mobile-size">
         {' '}
         {name} <i className="fas fa-pizza-slice fa-fw"></i>
       </h2>
@@ -28,7 +28,7 @@ export default function Header({ name, cartItemCount, setView }) {
       </div>
       <i
         onClick={viewSet}
-        className="fas fa-shopping-cart fa-fw fa-lg mr-5 pointer"
+        className="fas fa-shopping-cart fa-fw fa-lg mr-1 pointer"
       ></i>
     </div>
   );

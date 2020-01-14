@@ -24,14 +24,14 @@ export default function CartSummary(props) {
       </div>
       <div className="footer d-flex align-items-center px-2">
         <p className='text-muted pointer' onClick={catalog}>{'<'} back to Catalog</p>
-        <h1 className='header-size'>Cart Total: {totalPrice}</h1>
+        <h3 className='total-size'>Cart Total: {totalPrice}</h3>
         <button className='btn btn-dark mr-4' disabled onClick={checkout}>Checkout</button>
       </div>
     </>;
   }
 
   const cartItemElements = props.cartItems.map((cartItem, index) => {
-    return <CartSummartyItem key={index} remove={props.remove} item={cartItem} />;
+    return <CartSummartyItem key={index} remove={props.remove} add={props.add} item={cartItem} />;
   });
   return (
     <div>
@@ -41,7 +41,7 @@ export default function CartSummary(props) {
       </div>
       <div className="footer d-flex align-items-center px-2">
         <p className='text-muted pointer' onClick={catalog}>{'<'} back to Catalog</p>
-        <h1 className='header-size'>Cart Total: {totalPrice}</h1>
+        <h3 className='total-size'>Cart Total: {totalPrice}</h3>
         <button className='btn btn-info mr-4' onClick={checkout}>Checkout</button>
       </div>
     </div>

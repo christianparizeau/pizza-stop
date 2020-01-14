@@ -106,6 +106,7 @@ export default class App extends React.Component {
       );
     } else if (viewState === 'cart') {
       page = <CartSummary
+        add={this.addToCart}
         cartItems={this.state.cart}
         remove={this.removeFromCart}
         setView={this.setView} />;

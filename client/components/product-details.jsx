@@ -43,7 +43,7 @@ export default class ProductDetails extends React.Component {
         </div>
         <div className="row mx-2">
           <p>{longDescription}</p>
-          <a href="#" onClick={this.addToCart} className="btn mb-4 btn-primary">Add to Cart</a>
+          <a href="#/" onClick={this.addToCart} className="btn mb-4 btn-primary">Add to Cart</a>
         </div>
       </div>
     );

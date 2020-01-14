@@ -1,9 +1,11 @@
 import React from 'react';
 import QuantityBar from './QuantityBar';
 
-export default function CartSummartyItem({ item, remove }) {
+export default function CartSummartyItem({ item, remove, add }) {
   const price = '$' + (item.price / 100).toFixed(2);
   const removeItem = () => remove(item.id);
+  const addItem = () => add(item);
+
   return (
     <div className="d-flex cart-item mt-2 container">
       <div className="row">
@@ -19,7 +21,7 @@ export default function CartSummartyItem({ item, remove }) {
           Remove
         </button>
       </div>
-      <QuantityBar quantity={item.quantity} />
+      <QuantityBar addToCart={addItem} quantity={item.quantity} />
     </div>
   );
 
