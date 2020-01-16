@@ -36,6 +36,23 @@ if ($request['method'] === 'DELETE') {
   send($response);
 }
 
+if($request['method']==='PUT'){
+  $link = get_db_link();
+  $id = $request['body']['id'];
+  $cartId = $_SESSION['cart_id']
+  $quantityReduceSQL = "UPDATE `cartItems` 
+                        SET quantity=quantity-1
+                        WHERE cartId = $cartId 
+                        AND productId = $id";
+  $result = mysqli_query($link, $quantityReduceSQL);
+  if($result){
+    $response['body']=$quantity-1;
+  } else{
+    $response['body']['error'] = TRUE;
+  }
+  send($response);
+}
+
 if ($request['method'] === 'POST') {
   $productId = $request['body']['productId'];
   if (!isset($productId) || !is_numeric($productId) || intval($productId) === 0) {
