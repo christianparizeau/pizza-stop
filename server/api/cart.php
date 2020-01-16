@@ -24,32 +24,29 @@ if ($request['method'] === 'GET') {
 if ($request['method'] === 'DELETE') {
   $link = get_db_link();
   $id = $request['body']['id'];
-  $cartItemDeleteSQL =
-    "DELETE FROM cartItems
-     WHERE cartItems.cartItemId={$id}";
+  $cartItemDeleteSQL ="DELETE FROM cartItems
+                       WHERE cartItems.cartItemId={$id}";
   $result = mysqli_query($link, $cartItemDeleteSQL);
   if ($result) {
     $response['body'] = $id;
   } else {
     $response['body']['error'] = TRUE;
-  }
+  };
   send($response);
 }
 
-if($request['method']==='PUT'){
+if($request['method'] === 'PUT'){
   $link = get_db_link();
   $id = $request['body']['id'];
-  $cartId = $_SESSION['cart_id']
-  $quantityReduceSQL = "UPDATE `cartItems` 
+  $cartId = $_SESSION['cart_id'];
+  $quantity_reduce_SQL = "UPDATE `cartItems` 
                         SET quantity=quantity-1
                         WHERE cartId = $cartId 
                         AND productId = $id";
-  $result = mysqli_query($link, $quantityReduceSQL);
+  $result = mysqli_query($link, $quantity_reduce_SQL);
   if($result){
     $response['body']=$quantity-1;
-  } else{
-    $response['body']['error'] = TRUE;
-  }
+  };
   send($response);
 }
 
