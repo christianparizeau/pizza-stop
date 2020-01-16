@@ -42,11 +42,13 @@ if($request['method'] === 'PUT'){
   $quantity_reduce_SQL = "UPDATE `cartItems` 
                         SET quantity=quantity-1
                         WHERE cartId = $cartId 
-                        AND productId = $id";
+                        AND cartItemId = $id";
   $result = mysqli_query($link, $quantity_reduce_SQL);
   if($result){
-    $response['body']=$quantity-1;
-  };
+    $response['body']['status']=TRUE;
+  }else{
+    $response['body']['status']=FALSE;
+  }
   send($response);
 }
 

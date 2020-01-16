@@ -20,6 +20,7 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
+    this.reduceQuantity = this.reduceQuantity.bind(this);
   }
 
   placeOrder(checkoutInfo) {
@@ -53,6 +54,30 @@ export default class App extends React.Component {
       .then(productId => {
         const cart = this.state.cart.filter(cartItem => (cartItem.id !== productId));
         this.setState({ cart });
+      });
+  }
+
+  reduceQuantity(productId, quantity) {
+    if (quantity === 1) return;
+    const reqs = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: productId
+      })
+    };
+    fetch('/api/cart', reqs)
+      .then(res => res.json())
+      .then(status => {
+        if (status) {
+          const productCopy = JSON.parse(JSON.stringify(this.state.cart.find(cartItem => cartItem.id === productId)));
+          productCopy.quantity = productCopy.quantity - 1;
+          const cart = this.state.cart.filter(cartItem => (cartItem.id !== productId));
+          cart.push(productCopy);
+          this.setState({ cart });
+        }
       });
   }
 
@@ -107,6 +132,7 @@ export default class App extends React.Component {
     } else if (viewState === 'cart') {
       page = <CartSummary
         add={this.addToCart}
+        reduceQuantity={this.reduceQuantity}
         cartItems={this.state.cart}
         remove={this.removeFromCart}
         setView={this.setView} />;

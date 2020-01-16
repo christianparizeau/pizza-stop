@@ -31,7 +31,7 @@ export default function CartSummary(props) {
   }
 
   const cartItemElements = props.cartItems.map((cartItem, index) => {
-    return <CartSummartyItem key={index} remove={props.remove} add={props.add} item={cartItem} />;
+    return <CartSummartyItem key={index} remove={props.remove} add={props.add} reduceQuantity={props.reduceQuantity} item={cartItem} />;
   });
   return (
     <div>
