@@ -7,7 +7,7 @@ export default function CartSummary(props) {
   const checkout = () => {
     props.setView('checkout', {});
   };
-  const reducer = (acc, cartItem) => { return acc + cartItem.price; };
+  const reducer = (acc, cartItem) => { return acc + cartItem.price * cartItem.quantity; };
   let totalPrice = props.cartItems.reduce(reducer, 0);
   totalPrice = '$' + (totalPrice / 100).toFixed(2);
   if (!props.cartItems.length) {
@@ -24,14 +24,14 @@ export default function CartSummary(props) {
       </div>
       <div className="footer d-flex align-items-center px-2">
         <p className='text-muted pointer' onClick={catalog}>{'<'} back to Catalog</p>
-        <h1 className='header-size'>Cart Total: {totalPrice}</h1>
+        <h3 className='total-size'>Cart Total: {totalPrice}</h3>
         <button className='btn btn-dark mr-4' disabled onClick={checkout}>Checkout</button>
       </div>
     </>;
   }
 
   const cartItemElements = props.cartItems.map((cartItem, index) => {
-    return <CartSummartyItem key={index} item={cartItem} />;
+    return <CartSummartyItem key={index} remove={props.remove} add={props.add} reduceQuantity={props.reduceQuantity} item={cartItem} />;
   });
   return (
     <div>
@@ -41,7 +41,7 @@ export default function CartSummary(props) {
       </div>
       <div className="footer d-flex align-items-center px-2">
         <p className='text-muted pointer' onClick={catalog}>{'<'} back to Catalog</p>
-        <h1 className='header-size'>Cart Total: {totalPrice}</h1>
+        <h3 className='total-size'>Cart Total: {totalPrice}</h3>
         <button className='btn btn-info mr-4' onClick={checkout}>Checkout</button>
       </div>
     </div>

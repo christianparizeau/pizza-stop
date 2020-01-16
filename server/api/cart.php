@@ -9,6 +9,7 @@ if ($request['method'] === 'GET') {
     $cartItemDataSQL = "SELECT products.name, products.productId,
                                products.price, products.image,
                                products.shortDescription,
+                               cartItems.quantity,
                                cartItems.cartItemId as id
                         FROM products JOIN cartItems
                         ON products.productId=cartItems.productId
@@ -16,6 +17,37 @@ if ($request['method'] === 'GET') {
     $result = mysqli_query($link, $cartItemDataSQL);
     $message = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $response['body'] = $message;
+  }
+  send($response);
+}
+
+if ($request['method'] === 'DELETE') {
+  $link = get_db_link();
+  $id = $request['body']['id'];
+  $cartItemDeleteSQL ="DELETE FROM cartItems
+                       WHERE cartItems.cartItemId={$id}";
+  $result = mysqli_query($link, $cartItemDeleteSQL);
+  if ($result) {
+    $response['body'] = $id;
+  } else {
+    $response['body']['error'] = TRUE;
+  };
+  send($response);
+}
+
+if($request['method'] === 'PUT'){
+  $link = get_db_link();
+  $id = $request['body']['id'];
+  $cartId = $_SESSION['cart_id'];
+  $quantity_reduce_SQL = "UPDATE `cartItems` 
+                        SET quantity=quantity-1
+                        WHERE cartId = $cartId 
+                        AND cartItemId = $id";
+  $result = mysqli_query($link, $quantity_reduce_SQL);
+  if($result){
+    $response['body']['status']=TRUE;
+  }else{
+    $response['body']['status']=FALSE;
   }
   send($response);
 }
@@ -42,12 +74,14 @@ if ($request['method'] === 'POST') {
       $cartId = $_SESSION['cart_id'];
     }
     $cartItemInsert = "INSERT INTO `cartItems` (cartId,productId,price)
-                       VALUES ($cartId,$productId,$productPrice)";
+                       VALUES ($cartId,$productId,$productPrice)
+                       ON DUPLICATE KEY UPDATE quantity=quantity+1";
     mysqli_query($link, $cartItemInsert);
     $cartItemId = mysqli_insert_id($link);
     $cartItemDataSQL = "SELECT products.name, products.productId,
                                products.price, products.image,
                                products.shortDescription,
+                               cartItems.quantity,
                                cartItems.cartItemId as id
                         FROM products JOIN cartItems
                         ON products.productId=cartItems.productId

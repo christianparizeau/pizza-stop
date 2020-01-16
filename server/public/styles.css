@@ -37,6 +37,11 @@
   display:inline-block;
 }
 
+.total-size{
+  font-size: 1.1rem;
+  display: inline-block;
+}
+
 #root{
   background-image: url('./images/email-pattern.png');
   background-repeat: repeat;
