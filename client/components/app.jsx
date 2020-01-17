@@ -11,6 +11,7 @@ export default class App extends React.Component {
     this.name = 'Pizza Stop';
     this.state = {
       cart: [],
+      isSubmitting: false,
       view: {
         name: 'cart',
         params: {}
@@ -58,6 +59,7 @@ export default class App extends React.Component {
   }
 
   reduceQuantity(productId, quantity) {
+    this.setState({ isSubmitting: true });
     if (quantity === 1) return;
     const reqs = {
       method: 'PUT',
@@ -76,12 +78,13 @@ export default class App extends React.Component {
           productCopy.quantity = productCopy.quantity - 1;
           const cart = this.state.cart.filter(cartItem => (cartItem.id !== productId));
           cart.push(productCopy);
-          this.setState({ cart });
+          this.setState({ cart, isSubmitting: false });
         }
       });
   }
 
   addToCart(product) {
+    this.setState({ isSubmitting: true });
     const reqs = {
       method: 'POST',
       headers: {
@@ -94,7 +97,7 @@ export default class App extends React.Component {
       .then(cartItem => {
         const cart = Array.from(this.state.cart).filter(element => element.productId !== cartItem.productId);
         cart.push(cartItem);
-        this.setState({ cart });
+        this.setState({ cart, isSubmitting: false });
       });
   }
 
@@ -135,6 +138,7 @@ export default class App extends React.Component {
         reduceQuantity={this.reduceQuantity}
         cartItems={this.state.cart}
         remove={this.removeFromCart}
+        isSubmitting={this.state.isSubmitting}
         setView={this.setView} />;
     } else if (viewState === 'checkout') {
       page = (

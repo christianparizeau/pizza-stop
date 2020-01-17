@@ -1,7 +1,7 @@
 import React from 'react';
 import QuantityBar from './QuantityBar';
 
-export default function CartSummartyItem({ item, remove, add, reduceQuantity }) {
+export default function CartSummartyItem({ item, remove, add, reduceQuantity, isSubmitting }) {
   const price = '$' + (item.price / 100).toFixed(2);
   const removeItem = () => remove(item.id);
   const addItem = () => add(item);
@@ -21,7 +21,7 @@ export default function CartSummartyItem({ item, remove, add, reduceQuantity }) 
           Remove
         </button>
       </div>
-      <QuantityBar addToCart={addItem} reduceQuantity={decrementQuantity} quantity={item.quantity} />
+      <QuantityBar addToCart={addItem} reduceQuantity={decrementQuantity} isSubmitting={isSubmitting} quantity={item.quantity} />
     </div>
   );
 
