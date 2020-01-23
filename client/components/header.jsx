@@ -9,6 +9,10 @@ export default function Header({ name, cartItemCount, setView }) {
     setView('cart', {});
   };
 
+  const returnToCatalog = () => {
+    setView('catalog', {});
+  };
+
   let item = 'Items';
   if (cartItemCount === 1) {
     item = 'Item';
@@ -16,7 +20,9 @@ export default function Header({ name, cartItemCount, setView }) {
 
   return (
     <div className="text-center header">
-      <h2 className="mr-auto ml-1 mobile-size">
+      <h2 className="mr-auto ml-2 mobile-size pointer"
+        onClick={returnToCatalog}
+      >
         {' '}
         {name} <i className="fas fa-pizza-slice fa-fw"></i>
       </h2>
@@ -28,7 +34,7 @@ export default function Header({ name, cartItemCount, setView }) {
       </div>
       <i
         onClick={viewSet}
-        className="fas fa-shopping-cart fa-fw fa-lg mr-1 pointer"
+        className="fas fa-shopping-cart fa-fw fa-lg mr-2 pointer"
       ></i>
     </div>
   );
