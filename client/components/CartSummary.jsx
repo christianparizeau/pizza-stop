@@ -39,10 +39,11 @@ export default function CartSummary(props) {
         {cartItemElements}
         <div className='spacer mt-2'></div>
       </div>
-      <div className="footer d-flex align-items-center px-2">
-        <p className='text-muted pointer' onClick={catalog}>{'<'} back to Catalog</p>
-        <h3 className='total-size'>Cart Total: {totalPrice}</h3>
-        <button className='btn btn-info mr-4' onClick={checkout}>Checkout</button>
+      <div className="footer d-flex align-items-center justify-content-between px-2">
+        <button className="btn btn-sm btn-outline-light" onClick={catalog}><span className="mobile-text">Catalog</span></button>
+        {/* <p className='text-muted pointer mobile-text' onClick={catalog}>{'<'} back to Catalog</p> */}
+        <h3 className='total-size mobile-text centering align-text-bottom mb-0'>Cart Total: {totalPrice}</h3>
+        <button className='btn btn-info' onClick={checkout}>Checkout</button>
       </div>
     </div>
   );

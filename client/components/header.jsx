@@ -30,7 +30,8 @@ export default function Header({ name, cartItemCount, setView }) {
         onClick={viewSet}
         className="header-size mx-2 badge badge-secondary pointer"
       >
-        {cartItemCount} {item}
+        {cartItemCount}
+        <span className="mobile-hide">{item}</span>
       </div>
       <i
         onClick={viewSet}
