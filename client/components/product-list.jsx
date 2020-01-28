@@ -30,7 +30,7 @@ export default class ProductList extends React.Component {
         key={element.productId} />;
     });
     return (
-      <div className="d-flex mt-4 flex-wrap mt-2 justify-content-around container background">
+      <div className="d-flex mt-4 flex-wrap mt-2 justify-content-around container">
         {elements}
       </div>
     );

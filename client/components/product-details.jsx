@@ -44,9 +44,9 @@ export default class ProductDetails extends React.Component {
         <div className="row mx-2">
           <p>{longDescription}</p>
         </div>
-        <div className="row mx-2 mb-3 justify-content-between align-items-center">
+        <div className="row mx-1 mb-3 justify-content-between align-items-center">
           <CatalogButton catalog={this.getCatalog} />
-          <p className="mb-0 mx-1">Price: {displayPrice}</p>
+          <p className="mb-0">Price: {displayPrice}</p>
           <button onClick={this.addToCart} className="btn btn-primary">Add to Cart</button>
         </div>
       </div>

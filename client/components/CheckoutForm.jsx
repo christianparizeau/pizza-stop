@@ -1,5 +1,5 @@
 import React from 'react';
-
+import CatalogButton from './CatalogButton';
 export default class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export default class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <div className="container background">
+      <div className="container">
         <h1 className="mt-4 mb-2">My Cart</h1>
         <h4 className='text-muted mb-4'>{this.price}</h4>
         <form id="checkout" onSubmit={this.handleCheckout}>
@@ -76,7 +76,7 @@ export default class CheckoutForm extends React.Component {
           </div>
         </form>
         <div className="d-flex justify-content-between">
-          <p onClick={this.goToCatalog} className="text-muted pointer">{'<'}Continue Shopping</p>
+          <CatalogButton noOutline catalog={this.goToCatalog} />
           <button type="submit" form="checkout" className="btn btn-primary">Place Order</button>
         </div>
       </div >

@@ -36,13 +36,12 @@ export default function CartSummary(props) {
   });
   return (
     <div>
-      <div className="container background">
+      <div className="container margin-spacer">
         {cartItemElements}
-        <div className='spacer mt-2'></div>
+        <div className='spacer fixed-bottom'></div>
       </div>
       <div className="footer d-flex align-items-center justify-content-between px-2">
         <CatalogButton light={true} catalog={catalog} />
-        {/* <p className='text-muted pointer mobile-text' onClick={catalog}>{'<'} back to Catalog</p> */}
         <h3 className='total-size mobile-text centering align-text-bottom mb-0'>Cart Total: {totalPrice}</h3>
         <button className='btn btn-info' onClick={checkout}>Checkout</button>
       </div>
