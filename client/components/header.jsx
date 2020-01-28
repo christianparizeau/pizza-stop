@@ -13,9 +13,9 @@ export default function Header({ name, cartItemCount, setView }) {
     setView('catalog', {});
   };
 
-  let item = 'Items';
+  let item = ' Items';
   if (cartItemCount === 1) {
-    item = 'Item';
+    item = ' Item';
   }
 
   return (

@@ -10,13 +10,13 @@ export default function CartSummartyItem({ item, remove, add, reduceQuantity, is
     <>
       <div className="d-flex cart-item mt-2 container">
         <div className="row">
-          <img className='fixed-image-height-summary m-2 col-3' src={item.image} />
-          <div className='m-2 col-sm-12 col-md-3'>
-            <h2>{item.name}</h2>
-            <p className="text-muted">{price}</p>
+          <img className='fixed-image-height-summary m-0 col-2 p-0' src={item.image} />
+          <div className='p-2 col-sm-12 col-md-3 border-left border-right mb-0'>
+            <h2 className="text-center ">{item.name}</h2>
+            <p className="text-muted text-center">{price}</p>
           </div>
-          <p className='col-md-12 col-lg-3 pr-4'>{item.shortDescription}</p>
-          <div className="d-flex px-2 mb-2 align-items-center w-100 justify-content-between">
+          <p className='col-md-12 col-lg-3 pr-4 border-top pt-2'>{item.shortDescription}</p>
+          <div className="d-flex px-2 mb-2 align-items-center w-100 justify-content-between border-top pt-2">
             <QuantityBar addToCart={addItem} reduceQuantity={decrementQuantity} isSubmitting={isSubmitting} quantity={item.quantity} />
             <button type="button"
               onClick={removeItem}

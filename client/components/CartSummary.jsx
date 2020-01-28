@@ -38,7 +38,8 @@ export default function CartSummary(props) {
     <div>
       <div className="container margin-spacer">
         {cartItemElements}
-        <div className='spacer fixed-bottom'></div>
+        <div className="small-spacer mb-0 pb-0" />
+        <div className='spacer fixed-bottom' />
       </div>
       <div className="footer d-flex align-items-center justify-content-between px-2">
         <CatalogButton light={true} catalog={catalog} />

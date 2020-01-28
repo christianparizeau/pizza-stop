@@ -1,6 +1,6 @@
 .fixed-image-height{
   object-fit: contain;
-  height:250px;
+  height:200px
 }
 .header,.footer{
   background-color: rgb(33,31,31);
@@ -23,7 +23,7 @@
 }
 .cart-item{
   border: 1px solid darkgray;
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 .cart-item:hover{
@@ -31,12 +31,14 @@
 }
 
 .spacer{
+  visibility: hidden;
+  margin:0;
   height: 10vh;
   z-index:auto ;
 }
 
 .margin-spacer{
-  margin-bottom: 12vh;
+  margin-bottom: 10vh;
 }
 
 .header-size{
@@ -44,8 +46,9 @@
   display:inline-block;
 }
 
-.background{
-  background-color: white;
+.small-spacer{
+  height: 2vh;
+  visibility: none;
 }
 
 .total-size{
@@ -53,8 +56,12 @@
   display: inline-block;
 }
 
+.background{
+  background-color: white;
+}
+
 #root{
-  background-image: url('./images/email-pattern.png');
+  background-image: url('./images/united-squares.png');
   background-repeat: repeat;
   min-height: 100vh;
 }
@@ -75,6 +82,10 @@
 
   .mobile-text{
     font-size: 16px;
+  }
+
+  .fixed-image-height{
+    height: 215px;
   }
 
   .fixed-image-height-summary{
