@@ -22,7 +22,8 @@
   bottom:0;
 }
 .cart-item{
-  border: 1px solid darkgray
+  border: 1px solid darkgray;
+  background-color: white;
 }
 
 .cart-item:hover{
@@ -37,6 +38,10 @@
   display:inline-block;
 }
 
+.background{
+  background-color: white;
+}
+
 .total-size{
   font-size: 1.1rem;
   display: inline-block;
@@ -47,6 +52,8 @@
   background-repeat: repeat;
   min-height: 100vh;
 }
+
+
 
 .pointer:hover{
   cursor: pointer;

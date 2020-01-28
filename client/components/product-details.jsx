@@ -1,4 +1,5 @@
 import React from 'react';
+import CatalogButton from './CatalogButton';
 
 export default class ProductDetails extends React.Component {
   constructor(props) {
@@ -31,9 +32,8 @@ export default class ProductDetails extends React.Component {
     const { name, price, image, shortDescription, longDescription } = this.state.product;
     const displayPrice = '$' + (price / 100).toFixed(2);
     return (
-      <div className="container background">
-        <p className="text-muted pointer" onClick={this.getCatalog}>{'< '}Back to catalog </p>
-        <div className="row mx-3">
+      <div className="container">
+        <div className="row mx-2">
           <img src={image} className="fixed-image-height" />
           <div className=''>
             <h1>{name}</h1>
@@ -43,7 +43,11 @@ export default class ProductDetails extends React.Component {
         </div>
         <div className="row mx-2">
           <p>{longDescription}</p>
-          <a href="#/" onClick={this.addToCart} className="btn mb-4 btn-primary">Add to Cart</a>
+        </div>
+        <div className="row mx-2 mb-3 justify-content-between align-items-center">
+          <CatalogButton catalog={this.getCatalog} />
+          <p className="mb-0 mx-1">Price: {displayPrice}</p>
+          <button onClick={this.addToCart} className="btn btn-primary">Add to Cart</button>
         </div>
       </div>
     );
