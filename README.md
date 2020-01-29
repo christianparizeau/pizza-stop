@@ -31,9 +31,9 @@ https://wicked-sales.pzo.codes
 
 #### System Requirements
 
-- Node
+- PHP 7.2
 - NPM
-- MySQL
+- MySQL 8.0
 
 1. Clone the repository
 
