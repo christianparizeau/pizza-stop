@@ -30,7 +30,10 @@ export default class CheckoutForm extends React.Component {
     this.props.setView('catalog', {});
   }
 
-  handleCheckout() {
+  handleCheckout(e) {
+    if (e) {
+      e.preventDefault();
+    }
     this.props.checkout(this.state);
   }
 
