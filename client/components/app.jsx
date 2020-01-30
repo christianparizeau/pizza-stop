@@ -13,7 +13,7 @@ export default class App extends React.Component {
       cart: [],
       isSubmitting: false,
       view: {
-        name: 'cart',
+        name: 'catalog',
         params: {}
       }
     };

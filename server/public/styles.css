@@ -2,6 +2,7 @@
   object-fit: contain;
   height:200px
 }
+
 .header,.footer{
   background-color: rgb(33,31,31);
   color: whitesmoke;
@@ -12,15 +13,18 @@
   justify-content: center;
   align-items: center;
 }
+
 .header{
   top:0;
 }
+
 .footer{
   position:fixed;
   justify-content: space-between;
-  width:100vw;
+  width:100%;
   bottom:0;
 }
+
 .cart-item{
   border: 1px solid darkgray;
   background-color: whitesmoke;
@@ -66,6 +70,10 @@
   min-height: 100vh;
 }
 
+.sticky-offset{
+  top: 12vh;
+}
+
 .pointer:hover{
   cursor: pointer;
 }
@@ -74,6 +82,10 @@
 
   .mobile-hide{
     display: none;
+  }
+
+  .mobile-small{
+    font-size: 14px;
   }
 
   .mobile-size{
