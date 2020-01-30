@@ -14,7 +14,7 @@ export default function CartSummartyItem({ item, remove, add, reduceQuantity, is
           <img className='fixed-image-height-summary m-0 col-2 p-0' src={item.image} />
           <div className='p-2 col-sm-12 col-md-3 border-left border-right mb-0'>
             <h2 className="text-center ">{item.name}</h2>
-            <p className="text-muted text-center">{price}</p>
+            <p className="text-muted text-center">{price} Per Item</p>
           </div>
           <p className='col-md-12 col-lg-3 pr-4 border-top pt-2'>{item.shortDescription}</p>
           <div className="d-flex px-2 mb-2 align-items-center w-100 justify-content-between border-top pt-2">
