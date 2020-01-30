@@ -4,6 +4,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './CartSummary';
 import CheckoutForm from './CheckoutForm';
+import Modal from 'react-bootstrap/Modal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class App extends React.Component {
     this.state = {
       cart: [],
       isSubmitting: false,
+      isModalVisible: true,
       view: {
         name: 'catalog',
         params: {}
@@ -22,6 +24,7 @@ export default class App extends React.Component {
     this.placeOrder = this.placeOrder.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
     this.reduceQuantity = this.reduceQuantity.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   placeOrder(checkoutInfo) {
@@ -119,6 +122,10 @@ export default class App extends React.Component {
     this.getCartItems();
   }
 
+  hideModal() {
+    this.setState({ isModalVisible: false });
+  }
+
   render() {
     const viewState = this.state.view.name;
     let page = '';
@@ -153,13 +160,17 @@ export default class App extends React.Component {
     const cartItemCount = this.state.cart.reduce(reducer, 0);
     return (
       <div>
+        <Modal show={this.state.isModalVisible} onHide={() => { }}>
+          <Modal.Body>This website is for demonstration purposes only and no real purchases will be made. As such, please do not enter any personal or sensitive information.</Modal.Body>
+          <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I acknowledge</button></Modal.Footer>
+        </Modal>
         <Header
           name={this.name}
           cartItemCount={cartItemCount}
           setView={this.setView}
         />
         {page}
-      </div>
+      </div >
     );
   }
 }
