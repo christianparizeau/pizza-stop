@@ -1,10 +1,10 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
 import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './CartSummary';
 import CheckoutForm from './CheckoutForm';
-import Modal from 'react-bootstrap/Modal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,17 +27,10 @@ export default class App extends React.Component {
     this.hideModal = this.hideModal.bind(this);
   }
 
-  placeOrder(checkoutInfo) {
-    const reqs = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(checkoutInfo)
-    };
+  placeOrder() {
+    const reqs = { method: 'DELETE' };
     fetch('/api/orders', reqs)
-      .then(res => res.json())
-      .then(data => {
+      .then(() => {
         this.setView('catalog', {});
         this.setState({ cart: [] });
       });
@@ -159,10 +152,10 @@ export default class App extends React.Component {
     const reducer = (acc, cartItem) => { return acc + cartItem.quantity; };
     const cartItemCount = this.state.cart.reduce(reducer, 0);
     return (
-      <div>
+      <>
         <Modal show={this.state.isModalVisible} onHide={() => { }}>
           <Modal.Body>This website is for demonstration purposes only and no real purchases will be made. As such, please do not enter any personal or sensitive information.</Modal.Body>
-          <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I acknowledge</button></Modal.Footer>
+          <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I Understand</button></Modal.Footer>
         </Modal>
         <Header
           name={this.name}
@@ -170,7 +163,7 @@ export default class App extends React.Component {
           setView={this.setView}
         />
         {page}
-      </div >
+      </>
     );
   }
 }
