@@ -49,8 +49,8 @@ export default class ProductDetails extends React.Component {
         <Modal show={this.state.isModalVisible} onHide={() => { }}>
           <Modal.Body>You have added a {this.state.product.name} to your cart!</Modal.Body>
           <Modal.Footer>
-            <button className={'btn btn-success ml-2 mr-auto mb-0'} onClick={this.getCart}>View Cart</button>
-            <button className={'btn btn-primary mr-2 ml-auto mb-0'} onClick={this.getCatalog}>Continue Shopping</button>
+            <button className={'btn btn-primary ml-2 mr-auto mb-0'} onClick={this.getCatalog}>Continue Shopping</button>
+            <button className={'btn btn-success mr-2 ml-auto mb-0'} onClick={this.getCart}>View Cart</button>
           </Modal.Footer>
         </Modal>
         <div className="container">

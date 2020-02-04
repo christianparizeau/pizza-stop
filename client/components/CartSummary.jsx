@@ -1,6 +1,7 @@
 import React from 'react';
 import CatalogButton from './CatalogButton';
 import CartSummartyItem from './CartSummaryItem';
+
 export default function CartSummary(props) {
   const catalog = () => {
     props.setView('catalog', {});
@@ -10,7 +11,7 @@ export default function CartSummary(props) {
   };
   const reducer = (acc, cartItem) => { return acc + cartItem.price * cartItem.quantity; };
   let totalPrice = props.cartItems.reduce(reducer, 0);
-  totalPrice = '$' + (totalPrice / 100).toFixed(2);
+  totalPrice = '$' + (totalPrice / 100).toFixed(0);
   if (!props.cartItems.length) {
     return <>
       <div className="text-center">
@@ -23,10 +24,10 @@ export default function CartSummary(props) {
           </u>
         </div>
       </div>
-      <div className="footer d-flex align-items-center px-2">
-        <p className='text-muted pointer' onClick={catalog}>{'<'} back to Catalog</p>
-        <h3 className='total-size'>Cart Total: {totalPrice}</h3>
-        <button className='btn btn-dark mr-4' disabled onClick={checkout}>Checkout</button>
+      <div className="footer d-flex align-items-center justify-content-between px-2">
+        <CatalogButton light={true} catalog={catalog} />
+        <h3 className='total-size centering align-text-bottom mb-0 mobile-small'>Cart Total: {totalPrice}</h3>
+        <button className='btn btn-info' onClick={checkout}>Checkout</button>
       </div>
     </>;
   }
@@ -34,18 +35,21 @@ export default function CartSummary(props) {
   const cartItemElements = props.cartItems.map((cartItem, index) => {
     return <CartSummartyItem key={index} remove={props.remove} add={props.add} isSubmitting={props.isSubmitting} reduceQuantity={props.reduceQuantity} item={cartItem} />;
   });
+
   return (
-    <div>
-      <div className="container margin-spacer">
-        {cartItemElements}
-        <div className="small-spacer mb-0 pb-0" />
-        <div className='spacer fixed-bottom' />
+    <>
+      <div>
+        <div className="container margin-spacer">
+          {cartItemElements}
+          <div className="small-spacer mb-0 pb-0" />
+          <div className='spacer fixed-bottom' />
+        </div>
+        <div className="footer d-flex align-items-center justify-content-between px-2">
+          <CatalogButton light={true} catalog={catalog} />
+          <h3 className='total-size centering align-text-bottom mb-0 mobile-small'>Cart Total: {totalPrice}</h3>
+          <button className='btn btn-info' onClick={checkout}>Checkout</button>
+        </div>
       </div>
-      <div className="footer d-flex align-items-center justify-content-between px-2">
-        <CatalogButton light={true} catalog={catalog} />
-        <h3 className='total-size centering align-text-bottom mb-0 mobile-small'>Cart Total: {totalPrice}</h3>
-        <button className='btn btn-info' onClick={checkout}>Checkout</button>
-      </div>
-    </div>
+    </>
   );
 }
