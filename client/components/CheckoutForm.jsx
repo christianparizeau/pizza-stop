@@ -28,7 +28,7 @@ export default class CheckoutForm extends React.Component {
   }
 
   findTotalPrice(cartItems) {
-    const reducer = (acc, cartItem) => { return acc + cartItem.price; };
+    const reducer = (acc, cartItem) => { return acc + cartItem.price * cartItem.quantity; };
     const totalPrice = cartItems.reduce(reducer, 0);
     return ('$' + (totalPrice / 100).toFixed(2));
   }
