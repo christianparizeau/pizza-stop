@@ -3,7 +3,7 @@ import QuantityBar from './QuantityBar';
 
 export default function CartSummartyItem({ item, remove, add, reduceQuantity, isSubmitting }) {
   const price = '$' + (item.price / 100).toFixed(2);
-  const removeItem = () => remove(item.id);
+  const removeItem = () => remove(item.name, item.id);
   const addItem = () => add(item);
   const decrementQuantity = () => reduceQuantity(item.id, item.quantity);
   const totalPrice = '$' + (item.price / 100).toFixed(2) * item.quantity;

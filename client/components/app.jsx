@@ -14,6 +14,9 @@ export default class App extends React.Component {
       cart: [],
       isSubmitting: false,
       isModalVisible: true,
+      isConfirmModalVisible: false,
+      productId: null,
+      productName: null,
       view: {
         name: 'catalog',
         params: {}
@@ -22,7 +25,7 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
-    this.removeFromCart = this.removeFromCart.bind(this);
+    this.toggleConfirmModal = this.toggleConfirmModal.bind(this);
     this.reduceQuantity = this.reduceQuantity.bind(this);
     this.hideModal = this.hideModal.bind(this);
   }
@@ -37,6 +40,7 @@ export default class App extends React.Component {
   }
 
   removeFromCart(productId) {
+    this.setState({ isConfirmModalVisible: false, productName: null, productId: null });
     const reqs = {
       method: 'DELETE',
       headers: {
@@ -52,6 +56,10 @@ export default class App extends React.Component {
         const cart = this.state.cart.filter(cartItem => (cartItem.id !== productId));
         this.setState({ cart });
       });
+  }
+
+  toggleConfirmModal(productName, productId) {
+    this.setState({ productName, productId, isConfirmModalVisible: true });
   }
 
   reduceQuantity(productId, quantity) {
@@ -137,7 +145,7 @@ export default class App extends React.Component {
         add={this.addToCart}
         reduceQuantity={this.reduceQuantity}
         cartItems={this.state.cart}
-        remove={this.removeFromCart}
+        remove={this.toggleConfirmModal}
         isSubmitting={this.state.isSubmitting}
         setView={this.setView} />;
     } else if (viewState === 'checkout') {
@@ -153,6 +161,13 @@ export default class App extends React.Component {
     const cartItemCount = this.state.cart.reduce(reducer, 0);
     return (
       <>
+        <Modal show={this.state.isConfirmModalVisible} onHide={() => { }}>
+          <Modal.Body>Are you sure you want to remove the {this.state.productName} from your cart?</Modal.Body>
+          <Modal.Footer>
+            <button className={'btn btn-danger ml-1 mr-auto'} onClick={() => this.setState({ isConfirmModalVisible: false })}>Go back</button>
+            <button className={'btn btn-primary mr-1 ml-auto'} onClick={() => { this.removeFromCart(this.state.productId); }}> Yes</button>
+          </Modal.Footer>
+        </Modal>
         <Modal show={this.state.isModalVisible} onHide={() => { }}>
           <Modal.Body>This website is for demonstration purposes only and no real purchases will be made. As such, please do not enter any personal or sensitive information.</Modal.Body>
           <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I Understand</button></Modal.Footer>
