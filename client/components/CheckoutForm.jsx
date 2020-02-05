@@ -48,7 +48,7 @@ export default class CheckoutForm extends React.Component {
     return (
       <>
         <Modal show={this.state.isModalVisible} onHide={() => { }}>
-          <Modal.Body>No real purchase is being made, personal information will not be stored or processed in anyway. Please do not enter any personal or sensitive information.</Modal.Body>
+          <Modal.Body>No real purchase is being made, information will not be stored or processed in anyway. Please do not enter any personal or sensitive information.</Modal.Body>
           <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I Understand</button></Modal.Footer>
         </Modal>
         <div className="container">

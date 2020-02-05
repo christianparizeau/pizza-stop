@@ -10,6 +10,7 @@ if ($request['method'] === 'GET') {
                                products.price, products.image,
                                products.shortDescription,
                                cartItems.quantity,
+                               cartItems.createdAt,
                                cartItems.cartItemId as id
                         FROM products JOIN cartItems
                         ON products.productId=cartItems.productId
@@ -82,6 +83,7 @@ if ($request['method'] === 'POST') {
                                products.price, products.image,
                                products.shortDescription,
                                cartItems.quantity,
+                               cartItems.createdAt,
                                cartItems.cartItemId as id
                         FROM products JOIN cartItems
                         ON products.productId=cartItems.productId

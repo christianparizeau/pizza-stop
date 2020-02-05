@@ -82,7 +82,8 @@ export default class App extends React.Component {
           productCopy.quantity = productCopy.quantity - 1;
           const cart = this.state.cart.filter(cartItem => (cartItem.id !== productId));
           cart.push(productCopy);
-          this.setState({ cart, isSubmitting: false });
+          const cartCopy = this.cartSort(cart);
+          this.setState({ cart: cartCopy, isSubmitting: false });
         }
       });
   }
@@ -101,7 +102,8 @@ export default class App extends React.Component {
       .then(cartItem => {
         const cart = Array.from(this.state.cart).filter(element => element.productId !== cartItem.productId);
         cart.push(cartItem);
-        this.setState({ cart, isSubmitting: false });
+        const cartCopy = this.cartSort(cart);
+        this.setState({ cart: cartCopy, isSubmitting: false });
       });
   }
 
@@ -125,6 +127,19 @@ export default class App extends React.Component {
 
   hideModal() {
     this.setState({ isModalVisible: false });
+  }
+
+  cartSort(cart) {
+    const cartCopy = Array.from(cart);
+    cartCopy.sort(function (a, b) {
+      if (a.createdAt < b.createdAt) {
+        return -1;
+      } else if (a.createdAt > b.createdAt) {
+        return 1;
+      }
+      return 0;
+    });
+    return cartCopy;
   }
 
   render() {
