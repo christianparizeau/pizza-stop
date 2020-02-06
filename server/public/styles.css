@@ -38,6 +38,10 @@
   border: 1px solid black
 }
 
+.checkout{
+  max-width: 40%;
+}
+
 .spacer{
   visibility: hidden;
   margin:0;
@@ -86,6 +90,10 @@
 
   .mobile-hide{
     display: none;
+  }
+
+  .checkout{
+    max-width: unset;
   }
 
   .mobile-small{

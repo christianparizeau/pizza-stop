@@ -1,13 +1,18 @@
 import React from 'react';
-import CatalogButton from './CatalogButton';
 import Modal from 'react-bootstrap/Modal';
+import CatalogButton from './CatalogButton';
+import StateSelector from './StateSelector';
 export default class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       creditCard: '',
-      shippingAddress: '',
+      cvv: '',
+      email: '',
+      phone: '',
+      shippingAddress1: '',
+      shippingAddress2: '',
       isModalVisible: true
     };
     this.price = this.findTotalPrice(this.props.cartItems);
@@ -19,7 +24,7 @@ export default class CheckoutForm extends React.Component {
 
   fieldChange(e) {
     const newState = {};
-    newState[e.target.name] = e.target.value;
+    newState[e.currentTarget.name] = e.currentTarget.value;
     this.setState(newState);
   }
 
@@ -48,49 +53,125 @@ export default class CheckoutForm extends React.Component {
     return (
       <>
         <Modal show={this.state.isModalVisible} onHide={() => { }}>
-          <Modal.Body>No real purchase is being made, information will not be stored or processed in anyway. Please do not enter any personal or sensitive information.</Modal.Body>
+          <Modal.Body>No real purchase is being made here, information will not be stored or processed in anyway. Please do not enter any personal or sensitive information.</Modal.Body>
           <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I Understand</button></Modal.Footer>
         </Modal>
-        <div className="container">
-          <h1 className="mt-4 mb-2">My Cart</h1>
-          <h4 className='text-muted mb-4'>{this.price}</h4>
+        <div className="container checkout">
+          <h1 className="mt-4 mb-2">Cart Total</h1>
+          <h4 className='text-muted mb-3'>{this.price}</h4>
           <form id="checkout" onSubmit={this.handleCheckout}>
-            <div className="input-group mb-3">
-
-              <label htmlFor="name">Name</label>
-              <div className="col-12">
+            <div className="input-group mb-2">
+              <label htmlFor="name">Contact Details</label>
+              <div className="col-12 mb-1">
                 <input className='form-control'
                   type="text"
                   name='name'
                   required
+                  placeholder="Full Name"
                   onChange={this.fieldChange}
                   value={this.state.name} />
               </div>
             </div>
-            <div className="input-group mb-3">
-              <label htmlFor="creditCard">Credit Card</label>
-              <div className="col-12">
-                <input className='form-control'
-                  type="number"
-                  name='creditCard'
-                  required
-                  onChange={this.fieldChange}
-                  value={this.state.creditCard} />
+            <div className="form-row px-3 justify-content-between">
+              <div className="input-group mb-2 col-6">
+                <div className="form-group mb-1">
+                  <input className='form-control'
+                    type="text"
+                    name='email'
+                    placeholder="E-Mail"
+                    required
+                    onChange={this.fieldChange}
+                    value={this.state.email} />
+                </div>
+              </div>
+              <div className="input-group mb-2 col-6">
+                <div className="form-group mb-2">
+                  <input className='form-control'
+                    type="number"
+                    name='phone'
+                    placeholder="Phone #"
+                    required
+                    onChange={this.fieldChange}
+                    value={this.state.phone} />
+                </div>
               </div>
             </div>
-            <div className="input-group mb-4">
-              <label htmlFor="shippingAddress">Shipping Address</label>
+            <div className="input-group mb-2">
+              <label htmlFor="creditCard">Payment Details</label>
+              <div className="col-12 d-flex">
+                <div className="col-8 pl-0 pr-1">
+                  <input className='form-control'
+                    type="number"
+                    name='creditCard'
+                    placeholder="Credit Card #"
+                    required
+                    onChange={this.fieldChange}
+                    value={this.state.creditCard} />
+                </div>
+                <div className="col-4 pr-0 pl-1">
+                  <input className="form-control"
+                    type="number"
+                    name="cvv"
+                    required
+                    placeholder={'CVV'}
+                    onChange={this.fieldChange}
+                    value={this.state.cvv} />
+                </div>
+              </div>
+            </div>
+            <div className="input-group mb-2">
+              <label htmlFor="shippingAddress1">Shipping / Billing Address</label>
               <div className="col-12">
-                <textarea className='form-control'
+                <input className='form-control'
                   type="text"
-                  name='shippingAddress'
+                  name='shippingAddress1'
                   required
+                  placeholder="Line 1"
                   onChange={this.fieldChange}
-                  value={this.state.shippingAddress} />
+                  value={this.state.shippingAddress1} />
+              </div>
+            </div>
+            <div className="input-group mb-2">
+              <div className="col-12">
+                <input className='form-control'
+                  type="text"
+                  name='shippingAddress2'
+                  placeholder="Line 2 (Optional)"
+                  onChange={this.fieldChange}
+                  value={this.state.shippingAddress2} />
+              </div>
+            </div>
+            <div className="form-row px-3 justify-content-between">
+              <div className="input-group mb-2 col-5">
+                <div className="form-group mb-2">
+                  <input className='form-control'
+                    type="text"
+                    name='city'
+                    required
+                    placeholder="City"
+                    onChange={this.fieldChange}
+                    value={this.state.city} />
+                </div>
+              </div>
+              <div className="input-group mb-2 col-3">
+                <div className="form-group mb-2">
+                  <StateSelector />
+                </div>
+              </div>
+              <div className="input-group mb-2 col-4">
+                <div className="form-group mb-2">
+                  <input className='form-control'
+                    type="number"
+                    name='zip'
+                    required
+                    placeholder="Zip"
+                    onChange={this.fieldChange}
+                    value={this.state.zip} />
+                </div>
               </div>
             </div>
           </form>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between pb-3">
             <CatalogButton noOutline catalog={this.goToCatalog} />
             <button type="submit" form="checkout" className="btn btn-primary">Place Order</button>
           </div>
