@@ -18,7 +18,7 @@ export default class App extends React.Component {
       productId: null,
       productName: null,
       view: {
-        name: 'checkout',
+        name: 'catalog',
         params: {}
       }
     };
