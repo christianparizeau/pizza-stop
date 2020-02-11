@@ -56,10 +56,8 @@ export default class ProductDetails extends React.Component {
         <div className="container">
           <div className="row background border px-2 mx-1 mt-2 mb-2 card">
             <img src={image} className="fixed-image-height" />
-            <>
-              <h1 className="text-center">{name}</h1>
-              <h5 className="text-center">{shortDescription}</h5>
-            </>
+            <h1 className="text-center">{name}</h1>
+            <h5 className="text-center">{shortDescription}</h5>
           </div>
           <PriceBar getCatalog={this.getCatalog} displayPrice={displayPrice} addToCart={this.addToCart} />
           <div className="row px-2 mt-2 mx-1 background mb-2 border card">
