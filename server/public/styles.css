@@ -98,10 +98,6 @@
     display: none;
   }
 
-  .checkout{
-    max-width: unset;
-  }
-
   .mobile-small{
     font-size: 14px;
   }
@@ -120,5 +116,11 @@
     .mobile-text{
       font-size: .8rem
     }
+  }
+}
+
+@media(max-width:576px){
+  .checkout{
+    max-width: unset;
   }
 }

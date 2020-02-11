@@ -175,7 +175,7 @@ export default class CheckoutForm extends React.Component {
                   </div>
                 </div>
                 <div className="input-group mb-2 col-3">
-                  <div className="form-group mb-2">
+                  <div className="form-group w-100 mb-2">
                     <StateSelector />
                   </div>
                 </div>
