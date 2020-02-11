@@ -94,7 +94,7 @@ export default class CheckoutForm extends React.Component {
                       name='phone'
                       placeholder="Phone #"
                       required
-                      title="Please enter a valid US phone number with an area code"
+                      title="Please enter a valid US phone number with an area code and without the preceding 1"
                       pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
                       onChange={this.fieldChange}
                       value={this.state.phone} />
