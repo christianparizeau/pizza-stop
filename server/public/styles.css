@@ -111,5 +111,8 @@
     .badge-secondary{
       font-size:1.2rem
     }
+    .mobile-text{
+      font-size: .8rem
+    }
   }
 }

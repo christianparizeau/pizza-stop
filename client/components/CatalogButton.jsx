@@ -7,7 +7,7 @@ export default function CatalogButton(props) {
     <button className={`btn btn-sm btn${outline}${type}`}
       onClick={props.catalog}>
       <span className="mobile-text">
-                Catalog
+        Catalog
       </span>
     </button>);
 }
