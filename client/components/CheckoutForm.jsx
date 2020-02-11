@@ -35,7 +35,7 @@ export default class CheckoutForm extends React.Component {
   findTotalPrice(cartItems) {
     const reducer = (acc, cartItem) => { return acc + cartItem.price * cartItem.quantity; };
     const totalPrice = cartItems.reduce(reducer, 0);
-    return ('$' + (totalPrice / 100).toFixed(2));
+    return ('$' + (totalPrice / 100).toFixed(0));
   }
 
   goToCatalog() {
@@ -57,8 +57,8 @@ export default class CheckoutForm extends React.Component {
           <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I Understand</button></Modal.Footer>
         </Modal>
         <div className="container checkout">
-          <h1 className="mt-4 mb-2">Cart Total</h1>
-          <h4 className='text-muted mb-3'>{this.price}</h4>
+          <h1 className="mt-4 mb-2">Cart Total: </h1>
+          <h4 className='mb-3'>{this.price}</h4>
           <form id="checkout" onSubmit={this.handleCheckout}>
             <div className="card p-2 mb-2">
               <div className="input-group mb-2">

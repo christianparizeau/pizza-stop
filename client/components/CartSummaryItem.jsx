@@ -2,11 +2,11 @@ import React from 'react';
 import QuantityBar from './QuantityBar';
 
 export default function CartSummartyItem({ item, remove, add, reduceQuantity, isSubmitting }) {
-  const price = '$' + (item.price / 100).toFixed(2);
+  const price = '$' + (item.price / 100).toFixed(0);
   const removeItem = () => remove(item.name, item.id);
   const addItem = () => add(item);
   const decrementQuantity = () => reduceQuantity(item.id, item.quantity);
-  const totalPrice = '$' + (item.price / 100).toFixed(2) * item.quantity;
+  const totalPrice = '$' + (item.price / 100).toFixed(0) * item.quantity;
   return (
     <>
       <div className="d-flex cart-item mt-2 container">

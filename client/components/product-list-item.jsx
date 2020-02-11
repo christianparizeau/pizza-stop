@@ -4,7 +4,7 @@ export default function ProductListItem({ product, setView }) {
   const viewSetter = () => {
     setView('details', { productId: product.productId });
   };
-  const price = '$' + (product.price / 100).toFixed(2);
+  const price = '$' + (product.price / 100).toFixed(0);
   return (
     <div className="card mb-2 pointer"
       onClick={viewSetter}

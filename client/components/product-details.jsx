@@ -43,7 +43,7 @@ export default class ProductDetails extends React.Component {
   render() {
     if (!this.state.product) return null;
     const { name, price, image, shortDescription, longDescription } = this.state.product;
-    const displayPrice = '$' + (price / 100).toFixed(2);
+    const displayPrice = '$' + (price / 100).toFixed(0);
     return (
       <>
         <Modal show={this.state.isModalVisible} onHide={() => { }}>
