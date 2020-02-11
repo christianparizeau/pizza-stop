@@ -47,7 +47,7 @@ export default function CartSummary(props) {
         <div className="footer d-flex align-items-center justify-content-between px-2">
           <CatalogButton light={true} catalog={catalog} />
           <h3 className='total-size centering align-text-bottom mb-0 mobile-small'>Cart Total: {totalPrice}</h3>
-          <button className='btn btn-info' onClick={checkout}>Checkout</button>
+          <button className='btn btn-info btn-sm' onClick={checkout}>Checkout</button>
         </div>
       </div>
     </>

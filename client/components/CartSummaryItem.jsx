@@ -11,7 +11,7 @@ export default function CartSummartyItem({ item, remove, add, reduceQuantity, is
     <>
       <div className="d-flex cart-item mt-2 container">
         <div className="row">
-          <img className='fixed-image-height-summary m-0 col-2 p-0' src={item.image} />
+          <img className='fixed-image-height-summary col-md-3 d-md-block d-none m-0 col-2 p-0' src={item.image} />
           <div className='p-2 col-sm-12 col-md-3 border-left border-right mb-0'>
             <h2 className="text-center ">{item.name}</h2>
             <p className="text-muted text-center">{price} Per Item</p>
