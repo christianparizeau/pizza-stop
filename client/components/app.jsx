@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
 import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
@@ -12,35 +13,34 @@ export default class App extends React.Component {
     this.state = {
       cart: [],
       isSubmitting: false,
+      isModalVisible: true,
+      isConfirmModalVisible: false,
+      productId: null,
+      productName: null,
       view: {
-        name: 'cart',
+        name: 'catalog',
         params: {}
       }
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
-    this.removeFromCart = this.removeFromCart.bind(this);
+    this.toggleConfirmModal = this.toggleConfirmModal.bind(this);
     this.reduceQuantity = this.reduceQuantity.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
-  placeOrder(checkoutInfo) {
-    const reqs = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(checkoutInfo)
-    };
+  placeOrder() {
+    const reqs = { method: 'DELETE' };
     fetch('/api/orders', reqs)
-      .then(res => res.json())
-      .then(data => {
+      .then(() => {
         this.setView('catalog', {});
         this.setState({ cart: [] });
       });
   }
 
   removeFromCart(productId) {
+    this.setState({ isConfirmModalVisible: false, productName: null, productId: null });
     const reqs = {
       method: 'DELETE',
       headers: {
@@ -56,6 +56,10 @@ export default class App extends React.Component {
         const cart = this.state.cart.filter(cartItem => (cartItem.id !== productId));
         this.setState({ cart });
       });
+  }
+
+  toggleConfirmModal(productName, productId) {
+    this.setState({ productName, productId, isConfirmModalVisible: true });
   }
 
   reduceQuantity(productId, quantity) {
@@ -78,7 +82,8 @@ export default class App extends React.Component {
           productCopy.quantity = productCopy.quantity - 1;
           const cart = this.state.cart.filter(cartItem => (cartItem.id !== productId));
           cart.push(productCopy);
-          this.setState({ cart, isSubmitting: false });
+          const cartCopy = this.cartSort(cart);
+          this.setState({ cart: cartCopy, isSubmitting: false });
         }
       });
   }
@@ -97,7 +102,8 @@ export default class App extends React.Component {
       .then(cartItem => {
         const cart = Array.from(this.state.cart).filter(element => element.productId !== cartItem.productId);
         cart.push(cartItem);
-        this.setState({ cart, isSubmitting: false });
+        const cartCopy = this.cartSort(cart);
+        this.setState({ cart: cartCopy, isSubmitting: false });
       });
   }
 
@@ -119,6 +125,23 @@ export default class App extends React.Component {
     this.getCartItems();
   }
 
+  hideModal() {
+    this.setState({ isModalVisible: false });
+  }
+
+  cartSort(cart) {
+    const cartCopy = Array.from(cart);
+    cartCopy.sort(function (a, b) {
+      if (a.createdAt < b.createdAt) {
+        return -1;
+      } else if (a.createdAt > b.createdAt) {
+        return 1;
+      }
+      return 0;
+    });
+    return cartCopy;
+  }
+
   render() {
     const viewState = this.state.view.name;
     let page = '';
@@ -137,7 +160,7 @@ export default class App extends React.Component {
         add={this.addToCart}
         reduceQuantity={this.reduceQuantity}
         cartItems={this.state.cart}
-        remove={this.removeFromCart}
+        remove={this.toggleConfirmModal}
         isSubmitting={this.state.isSubmitting}
         setView={this.setView} />;
     } else if (viewState === 'checkout') {
@@ -152,14 +175,25 @@ export default class App extends React.Component {
     const reducer = (acc, cartItem) => { return acc + cartItem.quantity; };
     const cartItemCount = this.state.cart.reduce(reducer, 0);
     return (
-      <div>
+      <>
+        <Modal show={this.state.isConfirmModalVisible} onHide={() => { }}>
+          <Modal.Body>Are you sure you want to remove the {this.state.productName} from your cart?</Modal.Body>
+          <Modal.Footer>
+            <button className={'btn btn-danger ml-1 mr-auto'} onClick={() => this.setState({ isConfirmModalVisible: false })}>Go back</button>
+            <button className={'btn btn-primary mr-1 ml-auto'} onClick={() => { this.removeFromCart(this.state.productId); }}> Yes</button>
+          </Modal.Footer>
+        </Modal>
+        <Modal show={this.state.isModalVisible} onHide={() => { }}>
+          <Modal.Body>This website is for demonstration purposes only and no real purchases will be made. As such, please do not enter any personal or sensitive information.</Modal.Body>
+          <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I Understand</button></Modal.Footer>
+        </Modal>
         <Header
           name={this.name}
           cartItemCount={cartItemCount}
           setView={this.setView}
         />
         {page}
-      </div>
+      </>
     );
   }
 }
