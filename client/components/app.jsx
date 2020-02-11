@@ -17,6 +17,7 @@ export default class App extends React.Component {
       isConfirmModalVisible: false,
       productId: null,
       productName: null,
+      thankYouModal: false,
       view: {
         name: 'catalog',
         params: {}
@@ -28,6 +29,8 @@ export default class App extends React.Component {
     this.toggleConfirmModal = this.toggleConfirmModal.bind(this);
     this.reduceQuantity = this.reduceQuantity.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.addThankYou = this.addThankYou.bind(this);
+    this.hideThankYou = this.hideThankYou.bind(this);
   }
 
   placeOrder() {
@@ -35,8 +38,17 @@ export default class App extends React.Component {
     fetch('/api/orders', reqs)
       .then(() => {
         this.setView('catalog', {});
+        this.addThankYou();
         this.setState({ cart: [] });
       });
+  }
+
+  addThankYou() {
+    this.setState({ thankYouModal: true });
+  }
+
+  hideThankYou() {
+    this.setState({ thankYouModal: false });
   }
 
   removeFromCart(productId) {
@@ -187,6 +199,11 @@ export default class App extends React.Component {
           <Modal.Body>This website is for demonstration purposes only and no real purchases will be made. As such, please do not enter any personal or sensitive information.</Modal.Body>
           <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideModal}>I Understand</button></Modal.Footer>
         </Modal>
+        <Modal show={this.state.thankYouModal} onHide={() => { }}>
+          <Modal.Body>Thank you for using this demo site! No payment information has been stored and no real purchase has been made. Your cart has been cleared, feel free to browse again! </Modal.Body>
+          <Modal.Footer><button className={'btn btn-primary'} onClick={this.hideThankYou}>Close </button></Modal.Footer>
+        </Modal>
+
         <Header
           name={this.name}
           cartItemCount={cartItemCount}
