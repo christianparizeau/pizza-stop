@@ -77,7 +77,7 @@ export default class CheckoutForm extends React.Component {
               </div>
               <div className="form-row px-3 justify-content-between">
                 <div className="input-group mb-2 col-6">
-                  <div className="form-group mb-1">
+                  <div className="form-group w-100 mb-2">
                     <input className='form-control'
                       type="email"
                       name='email'
@@ -88,7 +88,7 @@ export default class CheckoutForm extends React.Component {
                   </div>
                 </div>
                 <div className="input-group mb-2 col-6">
-                  <div className="form-group mb-2">
+                  <div className="form-group w-100 mb-2">
                     <input className='form-control'
                       type="tel"
                       name='phone'
