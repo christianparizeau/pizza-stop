@@ -1,4 +1,4 @@
-# Wicked Sales
+# Pizza Stop
 
 A full stack LAMP & React shopping cart app
 
@@ -21,11 +21,11 @@ https://wicked-sales.pzo.codes
 
 #### Desktop
 
-![wicked-sales-preview](preivews\pizza-stop-desktop-preview.gif)
+![pizza-stop-preview](previews\pizza-stop-desktop-preview.gif)
 
 #### Mobile
 
-![wicked-sales-mobile](preivews\pizza-stop-mobile-preview.gif)
+![pizza-stop-mobile](previews\pizza-stop-mobile-preview.gif)
 
 ## Development
 
