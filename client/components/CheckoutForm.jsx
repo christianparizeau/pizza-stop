@@ -13,7 +13,9 @@ export default class CheckoutForm extends React.Component {
       phone: '',
       shippingAddress1: '',
       shippingAddress2: '',
-      isModalVisible: true
+      isModalVisible: true,
+      city: '',
+      zip: ''
     };
     this.price = this.findTotalPrice(this.props.cartItems);
     this.fieldChange = this.fieldChange.bind(this);
@@ -24,6 +26,10 @@ export default class CheckoutForm extends React.Component {
 
   fieldChange(e) {
     const newState = {};
+    const name = e.currentTarget.name;
+    if ((name === 'cvv' || name === 'creditCard' || name === 'phone') && isNaN(e.currentTarget.value)) {
+      return;
+    }
     newState[e.currentTarget.name] = e.currentTarget.value;
     this.setState(newState);
   }
@@ -94,6 +100,7 @@ export default class CheckoutForm extends React.Component {
                       name='phone'
                       placeholder="Phone #"
                       required
+                      inputMode="numeric"
                       title="Please enter a valid US phone number with an area code and without the preceding 1"
                       pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
                       onChange={this.fieldChange}
@@ -110,6 +117,7 @@ export default class CheckoutForm extends React.Component {
                     <input className='form-control'
                       type="text"
                       name='creditCard'
+                      inputMode="numeric"
                       placeholder="Credit Card #"
                       minLength={13}
                       maxLength={19}
@@ -123,9 +131,11 @@ export default class CheckoutForm extends React.Component {
                       type="text"
                       name="cvv"
                       required
+                      inputMode="numeric"
                       placeholder={'CVV'}
                       pattern="[0-9]{3}"
                       minLength={3}
+                      maxLength={3}
                       title="Please enter your 3 digit CVV"
                       onChange={this.fieldChange}
                       value={this.state.cvv} />
