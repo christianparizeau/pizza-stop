@@ -21,11 +21,11 @@ https://wicked-sales.pzo.codes
 
 #### Desktop
 
-![wicked-sales-preview](https://user-images.githubusercontent.com/36774670/70953080-1cf24000-201d-11ea-89a8-a0132e914b2a.gif)
+![wicked-sales-preview](preivews\pizza-stop-desktop-preview.gif)
 
 #### Mobile
 
-![wicked-sales-mobile](https://user-images.githubusercontent.com/36774670/71202467-1ea44980-2251-11ea-87b3-ac17c505f04e.gif)
+![wicked-sales-mobile](preivews\pizza-stop-mobile-preview.gif)
 
 ## Development
 
