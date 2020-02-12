@@ -13,7 +13,9 @@ export default class CheckoutForm extends React.Component {
       phone: '',
       shippingAddress1: '',
       shippingAddress2: '',
-      isModalVisible: true
+      isModalVisible: true,
+      city: '',
+      zip: ''
     };
     this.price = this.findTotalPrice(this.props.cartItems);
     this.fieldChange = this.fieldChange.bind(this);
@@ -24,6 +26,10 @@ export default class CheckoutForm extends React.Component {
 
   fieldChange(e) {
     const newState = {};
+    const name = e.currentTarget.name;
+    if ((name === 'cvv' || name === 'creditCard' || name === 'phone') && isNaN(e.currentTarget.value)) {
+      return;
+    }
     newState[e.currentTarget.name] = e.currentTarget.value;
     this.setState(newState);
   }
@@ -126,6 +132,7 @@ export default class CheckoutForm extends React.Component {
                       placeholder={'CVV'}
                       pattern="[0-9]{3}"
                       minLength={3}
+                      maxLength={3}
                       title="Please enter your 3 digit CVV"
                       onChange={this.fieldChange}
                       value={this.state.cvv} />
