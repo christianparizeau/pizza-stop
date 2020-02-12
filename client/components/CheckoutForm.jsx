@@ -100,6 +100,7 @@ export default class CheckoutForm extends React.Component {
                       name='phone'
                       placeholder="Phone #"
                       required
+                      inputMode="numeric"
                       title="Please enter a valid US phone number with an area code and without the preceding 1"
                       pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
                       onChange={this.fieldChange}
@@ -116,6 +117,7 @@ export default class CheckoutForm extends React.Component {
                     <input className='form-control'
                       type="text"
                       name='creditCard'
+                      inputMode="numeric"
                       placeholder="Credit Card #"
                       minLength={13}
                       maxLength={19}
@@ -129,6 +131,7 @@ export default class CheckoutForm extends React.Component {
                       type="text"
                       name="cvv"
                       required
+                      inputMode="numeric"
                       placeholder={'CVV'}
                       pattern="[0-9]{3}"
                       minLength={3}
