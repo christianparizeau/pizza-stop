@@ -27,10 +27,6 @@ export default class CheckoutForm extends React.Component {
 
   fieldChange(e) {
     const newState = {};
-    const name = e.currentTarget.name;
-    if ((name === 'cvv' || name === 'creditCard' || name === 'phone') && isNaN(e.currentTarget.value)) {
-      return;
-    }
     newState[e.currentTarget.name] = e.currentTarget.value;
     this.setState(newState);
   }
