@@ -39,7 +39,7 @@ https://pizza-stop.pzo.codes
 
     ```shell
     git clone https://github.com/christianparizeau/pizza-stop
-    cd wicked-sales
+    cd pizza-stop
     ```
 
 1. Install all dependencies with NPM.
