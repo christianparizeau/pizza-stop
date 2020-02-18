@@ -22,16 +22,19 @@ export default class CheckoutForm extends React.Component {
     this.goToCatalog = this.goToCatalog.bind(this);
     this.handleCheckout = this.handleCheckout.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.numFieldChange = this.numFieldChange.bind(this);
   }
 
   fieldChange(e) {
     const newState = {};
-    const name = e.currentTarget.name;
-    if ((name === 'cvv' || name === 'creditCard' || name === 'phone') && isNaN(e.currentTarget.value)) {
-      return;
-    }
     newState[e.currentTarget.name] = e.currentTarget.value;
     this.setState(newState);
+  }
+
+  numFieldChange(e) {
+    if (!isNaN(e.currentTarget.value)) {
+      this.setState({ ...this.state, [e.currentTarget.name]: e.currentTarget.value });
+    }
   }
 
   hideModal() {
@@ -123,7 +126,7 @@ export default class CheckoutForm extends React.Component {
                       maxLength={19}
                       pattern="[0-9]+"
                       required
-                      onChange={this.fieldChange}
+                      onChange={this.numFieldChange}
                       value={this.state.creditCard} />
                   </div>
                   <div className="col-4 pr-0 pl-1">
@@ -137,7 +140,7 @@ export default class CheckoutForm extends React.Component {
                       minLength={3}
                       maxLength={3}
                       title="Please enter your 3 digit CVV"
-                      onChange={this.fieldChange}
+                      onChange={this.numFieldChange}
                       value={this.state.cvv} />
                   </div>
                 </div>
@@ -198,7 +201,7 @@ export default class CheckoutForm extends React.Component {
                       pattern="^\d{5}(?:[-\s]\d{4})?$"
                       title="Please enter a valid zip code"
                       placeholder="Zip"
-                      onChange={this.fieldChange}
+                      onChange={this.numFieldChange}
                       value={this.state.zip} />
                   </div>
                 </div>
