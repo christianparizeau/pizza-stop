@@ -15,7 +15,7 @@ A full stack LAMP & React shopping cart app
 
 ## Live Demo
 
-https://wicked-sales.pzo.codes
+https://pizza-stop.pzo.codes
 
 ## Preview
 
@@ -38,7 +38,7 @@ https://wicked-sales.pzo.codes
 1. Clone the repository
 
     ```shell
-    git clone https://github.com/christianparizeau/wicked-sales
+    git clone https://github.com/christianparizeau/pizza-stop
     cd wicked-sales
     ```
 
