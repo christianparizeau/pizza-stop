@@ -2,6 +2,7 @@
 .vscode/
 .DS_Store
 _config.php
+_config.js
 node_modules/
 server/sessions/sess_*
 server/public/main.js*
