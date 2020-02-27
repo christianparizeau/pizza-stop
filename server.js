@@ -9,8 +9,15 @@ const user = dbParams.user;
 const password = dbParams.password;
 const database = dbParams.database;
 
-const connection = mysql.createConnection({ host, password, user, database });
-connection.connect();
+const getDbLink = () => {
+  const connection = mysql.createConnection({ host, password, user, database });
+  connection.connect(err => {
+    if (err) throw err;
+    // eslint-disable-next-line
+    console.log('Connected to MySQL!');
+  });
+  return connection;
+};
 
 router.use((req, res, next) => {
   // eslint-disable-next-line
@@ -18,15 +25,22 @@ router.use((req, res, next) => {
   next();
 });
 router.get('/products', (req, res) => {
-  connection.end();
-  res.json({ message: 'Products worked!' });
+  const connection = getDbLink();
+  const query = req.query.productId
+    ? `SELECT * FROM products WHERE productId = ${req.query.productId}`
+    : 'SELECT productId,name,price,image,shortDescription FROM products';
+  connection.query(query, (err, rows, fields) => {
+    if (err) throw err;
+    res.json({ message: rows });
+    connection.end();
+  });
+
 });
 router.get('/cart', (req, res) => {
-  connection.end();
   res.json({ message: 'Cart worked!' });
+
 });
-router.get('/orders', (req, res) => {
-  connection.end();
+router.delete('/orders', (req, res) => {
   res.json({ message: 'Orders worked!' });
 });
 
