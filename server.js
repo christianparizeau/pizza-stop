@@ -1,9 +1,10 @@
 const express = require('express');
-const app = express();
-const router = express.Router();
-const port = 9000;
 const dbParams = require('./_config.js');
 const mysql = require('mysql');
+// const session = require('express-session');
+const router = express.Router();
+const app = express();
+const port = 9000;
 const host = dbParams.host;
 const user = dbParams.user;
 const password = dbParams.password;
@@ -18,7 +19,10 @@ const getDbLink = () => {
   });
   return connection;
 };
-
+app.set('trust proxy', 1);
+// app.use(cookieSession({
+//   name: 'session'
+// }));
 router.use((req, res, next) => {
   // eslint-disable-next-line
   console.log('A response has been received!');
@@ -36,12 +40,14 @@ router.get('/products', (req, res) => {
   });
 
 });
+router.delete('/orders', (req, res) => {
+
+  res.json({ message: req.session });
+});
+
 router.get('/cart', (req, res) => {
   res.json({ message: 'Cart worked!' });
 
-});
-router.delete('/orders', (req, res) => {
-  res.json({ message: 'Orders worked!' });
 });
 
 app.use('/api', router);
