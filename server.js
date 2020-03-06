@@ -2,6 +2,7 @@ const express = require('express');
 const dbParams = require('./_config.js');
 const mysql = require('mysql');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 const router = express.Router();
 const app = express();
 const port = 9000;
@@ -19,8 +20,10 @@ const getDbLink = () => {
   });
   return connection;
 };
+const sessionStore = new MySQLStore({ host, password, user, database, createDatabaseTable: true });
 app.set('trust proxy', 1);
 app.use(session({
+  store: sessionStore,
   resave: false,
   saveUninitialized: true,
   secret: 'Bemdai Pamko'
@@ -43,8 +46,20 @@ router.get('/products', (req, res) => {
 
 });
 router.delete('/orders', (req, res) => {
-
-  res.json(req.sessionID);
+  const connection = getDbLink();
+  connection.query(
+    `DELETE FROM cartItems WHERE cartId = ${req.sessionID}`,
+    err => {
+      if (err) throw err;
+    }
+  );
+  connection.query(
+    `DELETE FROM carts WHERE cartId = ${req.sessionID}`,
+    err => {
+      if (err) throw err;
+      res.json({ message: 'Deleted items from cart and cart from carts' });
+    }
+  );
 });
 
 router.get('/cart', (req, res) => {
@@ -53,7 +68,5 @@ router.get('/cart', (req, res) => {
 });
 
 app.use('/api', router);
-// app.get('/', (req, res) => res.send('Hello World'));
-// app.get('api/', (req, res) => res.send('This Worked!'));
 // eslint-disable-next-line
 app.listen(port, () => console.log(`Magic happens on port ${port}!`));
