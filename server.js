@@ -22,12 +22,15 @@ const getDbLink = () => {
 };
 const sessionStore = new MySQLStore({ host, password, user, database, createDatabaseTable: true });
 app.set('trust proxy', 1);
+
 app.use(session({
   store: sessionStore,
   resave: false,
   saveUninitialized: true,
   secret: 'Bemdai Pamko'
 }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 router.use((req, res, next) => {
   // eslint-disable-next-line
   console.log('A response has been received!');
@@ -43,7 +46,6 @@ router.get('/products', (req, res) => {
     res.json({ message: rows });
     connection.end();
   });
-
 });
 router.delete('/orders', (req, res) => {
   const connection = getDbLink();
@@ -79,6 +81,34 @@ router.get('/cart', (req, res) => {
     res.json({ message: rows });
   });
 });
+router.post('/cart', (req, res) => {
+  const connection = getDbLink();
+  const getProductPriceQuery = `SELECT price from products WHERE productId=${req.body.productId}`;
+  connection.query(getProductPriceQuery, (err, rows, fields) => {
+    if (err) throw err;
+    const productPrice = rows[0].price;
+    const insertIntoCartQuery = `INSERT INTO cartItems (cartId,productId,price)
+                                 VALUES (1,${req.body.productId},${productPrice})
+                                 ON DUPLICATE KEY UPDATE quantity=quantity+1`;
+    connection.query(insertIntoCartQuery, (err, result) => {
+      if (err) { throw err; }
+      const cartItemDataQuery = `SELECT products.name, products.productId,
+      products.price, products.image,
+        products.shortDescription,
+        cartItems.quantity,
+        cartItems.createdAt,
+        cartItems.cartItemId as id
+      FROM products JOIN cartItems
+      ON products.productId = cartItems.productId
+      WHERE cartItems.cartItemId = ${result.insertId}`;
+      connection.query(cartItemDataQuery, (err, rows) => {
+        if (err) throw err;
+        res.json(rows);
+      });
+    });
+  });
+});
+
 app.use('/api', router);
 // eslint-disable-next-line
 app.listen(port, () => console.log(`Magic happens on port ${port}!`));
