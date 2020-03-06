@@ -64,9 +64,21 @@ router.delete('/orders', (req, res) => {
 
 router.get('/cart', (req, res) => {
   res.json({ message: 'Cart worked!' });
-
+  const connection = getDbLink();
+  const getItemsFromCartQuery = `SELECT products.name, products.productId,
+                                        products.price, products.image,
+                                        products.shortDescription,
+                                        cartItems.quantity,
+                                        cartItems.createdAt,
+                                        cartItems.cartItemId as id
+                                FROM products JOIN cartItems
+                                ON products.productId=cartItems.productId
+                                WHERE cartItems.cartId=${req.sessionID}`;
+  connection.query(getItemsFromCartQuery, (err, rows, fields) => {
+    if (err) throw err;
+    res.json({ message: rows });
+  });
 });
-
 app.use('/api', router);
 // eslint-disable-next-line
 app.listen(port, () => console.log(`Magic happens on port ${port}!`));
