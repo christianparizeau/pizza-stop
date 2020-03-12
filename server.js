@@ -83,12 +83,30 @@ router.get('/cart', (req, res) => {
 
 router.post('/cart', (req, res) => {
   const connection = getDbLink();
-  getCartId(connection, req, res, req.session.cartId);
+  postToCart(connection, req, res, req.session.cartId);
+});
+
+router.put('/cart', (req, res) => {
+  const connection = getDbLink();
+  const cartId = req.session.cartId;
+  const itemId = req.body.id;
+  const quantityReduceSQL = `UPDATE cartItems
+                             SET quantity=quantity-1
+                             WHERE cartId = ${cartId}
+                             AND cartItemId = ${itemId}`;
+  connection.query(quantityReduceSQL, (err, rows, fields) => {
+    if (err) { throw err; }
+    res.json({ body: 'true' });
+  });
 });
 
 app.use('/api', router);
 // eslint-disable-next-line
 app.listen(port, () => console.log(`Magic happens on port ${port} !`));
+
+const postToCart = (connection, req, res, cartId) => {
+  getCartId(connection, req, res, cartId);
+};
 
 const getCartId = (connection, req, res, cartId) => {
   if (cartId) {
