@@ -83,12 +83,16 @@ router.get('/cart', (req, res) => {
 
 router.post('/cart', (req, res) => {
   const connection = getDbLink();
-  getCartId(connection, req, res, req.session.cartId);
+  postToCart(connection, req, res, req.session.cartId);
 });
 
 app.use('/api', router);
 // eslint-disable-next-line
 app.listen(port, () => console.log(`Magic happens on port ${port} !`));
+
+const postToCart = (connection, req, res, cartId) => {
+  getCartId(connection, req, res, cartId);
+};
 
 const getCartId = (connection, req, res, cartId) => {
   if (cartId) {
