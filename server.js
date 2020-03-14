@@ -100,6 +100,17 @@ router.put('/cart', (req, res) => {
   });
 });
 
+router.delete('/cart', (req, res) => {
+  const connection = getDbLink();
+  const id = req.body.id;
+  const cartDeleteSQL = `DELETE FROM cartItems
+                         WHERE cartItems.cartItemId=${id}`;
+  connection.query(cartDeleteSQL, err => {
+    if (err) throw err;
+    res.send(id);
+  });
+});
+
 app.use('/api', router);
 // eslint-disable-next-line
 app.listen(port, () => console.log(`Magic happens on port ${port} !`));
