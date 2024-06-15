@@ -13,10 +13,6 @@ A full stack LAMP & React shopping cart app
 - HTML5
 - AWS EC2
 
-## Live Demo
-
-https://pizza-stop.pzo.codes
-
 ## Preview
 
 #### Desktop
